@@ -37,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # For Django Rest Framework
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
 
+    #Django StartApps
     'projectApi'
 ]
 
