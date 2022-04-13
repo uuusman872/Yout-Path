@@ -43,8 +43,8 @@ class ChannelModel(models.Model):
 
 
 class Subscription(models.Model):
-    user = models.ForeignKey(UserModel)
-    channel = models.ForeignKey(ChannelModel)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    channel = models.ForeignKey(ChannelModel, on_delete=models.CASCADE)
     is_subscribed = models.BooleanField(default=False)
 
 
