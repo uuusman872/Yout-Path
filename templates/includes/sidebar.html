@@ -5,7 +5,7 @@
     <div class="sidebar__categories">
       <div class="sidebar__category">
         <i class="material-icons">home</i>
-        <span>Home</span>
+        <span><a href="{% url 'home' %}">Home</a></span>
       </div>
       <!-- <div class="sidebar__category">
         <i class="material-icons">local_fire_department</i>
@@ -13,14 +13,14 @@
       </div> -->
       <div class="sidebar__category">
         <i class="material-icons">subscriptions</i>
-        <span>Subcriptions</span>
+        <span><a href="{% url 'profile' %}">Subcriptions</a></span>
       </div>
     </div>
     <hr />
     <div class="sidebar__categories">
       <div class="sidebar__category">
         <i class="material-icons">library_add_check</i>
-        <span>Library</span>
+        <span><a href="{% url 'channels' %}">Library</a></span>
       </div>
       <!-- <div class="sidebar__category">
         <i class="material-icons">history</i>
@@ -28,7 +28,7 @@
       </div> -->
       <div class="sidebar__category">
         <i class="material-icons">play_arrow</i>
-        <span>Your Videos</span>
+        <span><a href="{% url 'videos' %}">Your Videos</a></span>
       </div>
       <!-- <div class="sidebar__category">
         <i class="material-icons">watch_later</i>
@@ -36,25 +36,15 @@
       </div> -->
       <div class="sidebar__category">
         <i class="material-icons">thumb_up</i>
-        <span>Liked Videos</span>
+        <span><a href="{% url 'profile' %}">Liked videos</a></span>
       </div>
     </div>
     <hr />
    
     <div class="sidebar__category">
         <span>Subcriptions</span>
-        <button onClick="refreshPage()">Refresh Page</button>
+      
       </div>
-    <script>
-        function refreshPage(){
-                    $.ajax({
-            url: "playback",
-            type: 'GET',
-            success: function (data) {
-                $('#text').load( "playback" + '#content');
-                        }
-            });
-        } 
-    </script>
+  
   </div>
   <!-- Sidebar Ends -->

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block main %}
+
+
+    <!-- Main Body Starts -->
+    <div class="mainBody">
+        {% include 'includes/sidebar.html' %}
+
+        
+        <div class="container-profile"> 
+
+            <div class="background">
+                <img src="{% static 'images/Screenshot 2022-04-22 170013.png' %}" alt="">
+            </div>
+
+
+            <div class="user-profile-info">
+                <div class='user-info'>
+                    <!-- <div class="subscribe-button"> -->
+                    <button class="subscribe-button">Edit Profile</button>
+                    <img class='user-pic' src="{% static 'images/YouTube-Logo.png' %}" alt="user profile picture">
+                    <span class='user-name'>Benjamin Parker</span>
+                    <br>
+                    <span class='num-subscribers'>2.8m subscribers</span>
+                    <br><br>
+                    <div class='video-description'>Here it goes a compillation of nature songs to make you relax and
+                        enjoy your free time.</div>
+        
+                    <!-- </div> -->
+                    <div class="profile-buttons">
+
+                        <button onClick="videos()">Videos</button>
+                        <button  onClick="Channels()">Channels</button>
+
+                        <script>
+                            function videos(){
+                                        $.ajax({
+                                url: "videos",
+                                type: 'GET',
+                                success: function (data) {
+                                    $('#load-vidoes').load( "videos");
+                            
+                                            }
+                                });
+                            } 
+                        </script>
+
+                        <script>
+                            function Channels(){
+                                        $.ajax({
+                                url: "channels" + "#content",
+                                type: 'GET',
+                                success: function (data) {
+                                    $('#load-channels').load( "channels"  + '#content');
+                                   
+                                            }
+                                });
+                            } 
+                        </script>
+
+                    </div>     
+                        
+                    </div>
+
+                </div>
+
+
+                <div id="load-vidoes" class="profile-vidoes"> </div>
+                <div id="load-channels" class="profile-channels"> </div>
+
+            </div>
+          
+
+            
+        </div>
+
+     
+    </div>
+ 
+    <!-- Main Body Ends -->
+    
+    
+{% endblock main %}

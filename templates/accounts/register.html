@@ -1,0 +1,44 @@
+{% extends 'accounts/accounts_base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block main %}
+
+
+
+<div class="container">
+
+    <form id="signup">
+
+        <div class="header">
+        
+            <h3>Sign Up</h3>
+            
+            <p>Fill and boom</p>
+            
+        </div>
+        
+        <div class="sep"></div>
+
+        <div class="inputs">
+        
+            <input type="email" placeholder="e-mail" autofocus />
+        
+            <input type="password" placeholder="Password" />
+            
+
+            
+            <a id="submit" href="#">SIGN UP </a>
+            <div class="checkboxy">
+                <a href="{% url 'login' %}"> Already Registerd?</a>
+            </div>
+            
+        
+        </div>
+
+    </form>
+
+</div>
+</div>
+​
+
+{%endblock main%}
