@@ -5,5 +5,7 @@ from frontend import views
 urlpatterns = [
 
     path('', views.index, name="home"),
+    path('playback', views.playback, name="playback"),
+    path('videoplayer', views.videoplayer, name="videoplayer")
   
 ]

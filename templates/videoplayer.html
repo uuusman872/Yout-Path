@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block main %}
+  
+<div class="mainBody">
+    {% include 'includes/sidebar.html' %}
+
+
+    <div class="container">
+        <!-- Current Video  -->
+        <div class="video-info">
+           
+                <iframe width="960" height="515" src="https://www.youtube.com/embed/CAJ6IE-lKP4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <div class="video-title">Title of videos   <2</div>
+            <div class="number-of-views">
+                <span>123,123,000 views </span>
+            </div>
+            <div class="like-and-dislike-section">
+                <i class="material-icons">thumb_up</i> <span
+                    class='likes-share like-share-elements'> 123 </span>
+                    <i class="material-icons">thumb_down</i> <span <span
+                    class='likes-share like-share-elements'> 5 </span>
+                    
+            </div>
+
+            <div class='user-info'>
+                <!-- <div class="subscribe-button"> -->
+                <button class="subscribe-button">SUBSCRIBE</button>
+                <img class='user-pic' src="{% static 'images/YouTube-Logo.png' %}" alt="user profile picture">
+                <span class='user-name'>Benjamin Parker</span>
+                <br>
+                <span class='num-subscribers'>2.8m subscribers</span>
+                <div class='video-description'>Here it goes a compillation of nature songs to make you relax and
+                    enjoy your free time.</div>
+    
+                <!-- </div> -->
+
+            </div>
+            <div class="comments-review">
+                <span> 810 Comments </span><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> 
+            </div>
+            <div class="grid-comments">
+                <div class="grid-item-comment">
+                    <div class="viewer-info">
+                        <img class="circle-icon" src="{% static 'images/YouTube-Logo.png' %}" alt="user-img">
+                        <span class="comment-title">Cafe Music BGM channel</span>
+                        <span class="gray-color">1 year ago</span>
+                    </div>
+
+                    <p class='comment-description'>I subscribe when I woke up and didn’t realize but then like it on
+                        purpose 😜😂😂😂😂😅</p>
+                    <div class="like-and-dislike-section-comments">
+                        <i class="material-icons">thumb_up</i>  <span> 1 </span>
+                        <i class="material-icons">thumb_down</i> <span> 546 </span>
+                        <span class="reply-button">REPLY</span>
+                    </div>
+                    
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- recommended videos section  -->
+    <div class="recommended-videos">
+        <div class='up-next-autoplay'><span style="margin-right: 100px;">Up next</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical music for Work</span><br>
+            <span class='recommended-video-channel'>relaxingTunes</span><br>
+            <span class='recommended-video-views'>2,4 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        <div class="recommended-video-info">
+            <img class='recommended-video-thumbnail' src='{% static 'images/YouTube-Logo.png' %}' alt="a recommended video thumbnail ">
+            <span class='recommended-video-title'>Classical Music for Reading - Mozart, Chopin, Debussy, Tchaikovsky...
+            </span><br>
+            <span class='recommended-video-channel'>classicalFanatic32</span><br>
+            <span class='recommended-video-views'>1,2 M views</span>
+
+        </div>
+        
+    </div>
+    <!-- <div> -->
+
+
+
+
+</div>
+{% endblock main %}

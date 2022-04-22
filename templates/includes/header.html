@@ -1,0 +1,28 @@
+{% load static %}
+
+ <!-- Header Starts -->
+ <div class="header">
+    <div class="header__left">
+      <i id="menu" class="material-icons">menu</i>
+      <img
+        src="{% static 'images/YouTube-Logo.png' %}"
+        alt="logo"
+      />
+    </div>
+
+    <div class="header__search">
+      <form action="">
+        <input type="text" placeholder="Search" />
+        <button><i class="material-icons">search</i></button>
+      </form>
+    </div>
+
+    <div class="header__icons">
+      <i class="material-icons display-this">search</i>
+      <i class="material-icons">videocam</i>
+      {% comment %} <i class="material-icons">apps</i>
+      <i class="material-icons">notifications</i> {% endcomment %}
+      <i class="material-icons display-this">account_circle</i>
+    </div>
+  </div>
+  <!-- Header Ends -->
