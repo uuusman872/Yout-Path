@@ -1,7 +1,7 @@
 /* GENERAL RULES */
 
 body {
-  background-color: #f9f9f9;
+  background-color: #1A5080;
   font-family: roboto, sans-serif;
 }
 
@@ -60,10 +60,11 @@ nav {
 }
 
 .video-title {
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 1px solid #698eff;
   padding-top: 15px;
   font-size: 24px;
   display: block;
+  color: #F8AB2F;
 }
 
 .number-of-views {
@@ -111,12 +112,13 @@ nav {
 }
 
 .num-subscribers {
-  color: #606060;
+  color: #F8AB2F;
 }
 
 .video-description {
   padding-top: 10px;
   padding-bottom: 10px;
+  color: #f8ab2f;
 }
 
 .description-show-more {
@@ -126,7 +128,7 @@ nav {
 }
 
 .subscribe-button {
-  background-color: #cc353d;
+  background-color: #F8AB2F;
   color: white;
   padding: 10px 16px;
   border-radius: 2px;
@@ -192,6 +194,7 @@ nav {
 
 .comment-description {
   padding-left: 65px;
+  color: #f8ab2f;
 }
 
 .like-and-dislike-section-comments {
@@ -208,7 +211,7 @@ nav {
 }
 
 .reply-button {
-  color: #636363;
+  color: #f8ab2f;  
   font-family: roboto, sans-serif;
   font-weight: bold;
   font-size: 13px;

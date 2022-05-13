@@ -12,15 +12,16 @@ body {
 /* header */
 
 .material-icons {
-  color: rgb(96, 96, 96);
+  color: #ec7e36;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  height: 80px;
   padding: 15px;
+  background: #00233d;
 }
 
 .header__left {
@@ -39,7 +40,7 @@ body {
 }
 
 .header__search form {
-  border: 1px solid #ddd;
+  border: 1px solid #698eff;
   height: 35px;
   margin: 0;
   padding: 0;
@@ -53,6 +54,7 @@ body {
   border-radius: 0;
   border: none;
   height: 100%;
+  background: #1a5080;
 }
 
 .header__search button {
@@ -61,6 +63,7 @@ body {
   height: 100%;
   border: none;
   border-radius: 0;
+  background: #1a5080;
 }
 
 /* Sidebar */
@@ -68,12 +71,13 @@ body {
   height: calc(100vh - 70px);
   display: flex;
   /* overflow: hidden; */
+  background-color: #1A5080;
 }
 
 .sidebar {
   height: 100%;
   width: 230px;
-  background-color: white;
+  background-color: #00233d;
   overflow-y: scroll;
 }
 
@@ -96,7 +100,7 @@ body {
 }
 
 .sidebar__category:hover {
-  background: #e5e5e5;
+  background: #698eff;
   cursor: pointer;
 }
 
@@ -113,11 +117,11 @@ hr {
 /* videos */
 
 .videos {
-  background-color: #f9f9f9;
+  background-color: #1A5080;
   width: 100%;
   height: 100%;
   padding: 15px 15px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #698eff;
   overflow-y: scroll;
 }
 
@@ -164,7 +168,7 @@ hr {
 }
 
 .title h3 {
-  color: rgb(3, 3, 3);
+  color: #F8AB2F;
   line-height: 18px;
   font-size: 14px;
   margin-bottom: 6px;
@@ -173,7 +177,7 @@ hr {
 .title a,
 span {
   text-decoration: none;
-  color: rgb(96, 96, 96);
+  color: #F8AB2F;
   font-size: 14px;
 }
 
@@ -248,7 +252,7 @@ h1 {
     align-items: center;
     /* margin: 36px; */
     /* padding: 87px; */
-    background-color: #e5e5e5;
+    background-color: #698eff;
     padding-left: 100px;
     padding-top: 30px;
     padding-right: 100px;
@@ -272,5 +276,5 @@ h1 {
 
 a{
   text-decoration: none;
-  color: black;
+  color: #F8AB2F;
 }
