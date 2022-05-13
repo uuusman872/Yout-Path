@@ -1,4 +1,13 @@
 /* GENERAL RULES */
+.mainBody-1 {
+  height: calc(100vh - 70px);
+  display: flex;
+  /* overflow: hidden; */
+  background-color: #1A5080;
+  flex-wrap: wrap;
+  margin: 0 auto;
+
+}
 
 body {
   background-color: #1A5080;
@@ -225,6 +234,7 @@ nav {
   float: right;
   margin-left: 10px;
   margin-top: 10px;
+  margin: 0 auto;
 }
 
 .recommended-video-thumbnail {
