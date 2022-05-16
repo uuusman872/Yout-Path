@@ -7,22 +7,10 @@ from django.conf import settings
 class UserModel(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50, unique=True)
     phoneNumber = models.IntegerField()
-
-
-
-class PreacherAccount(UserModel):
-    specialization = models.TextField()
-    certification = models.FileField(upload_to="Certification")
+    specialization = models.TextField(null=True, blank=True)
+    certification = models.FileField(upload_to="Certification", null=True, blank=True)
     is_preacher = models.BooleanField(default=False)
-
-
-class CommonUserAccount(UserModel):
-    is_commonUser = models.BooleanField(default=False)
 
 
 CHANNEL_TYPE = [
@@ -33,7 +21,7 @@ CHANNEL_TYPE = [
 
 
 class ChannelModel(models.Model):
-    User = models.ForeignKey(PreacherAccount, on_delete=models.CASCADE)
+    User = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     Name = models.CharField(max_length=30)
     Type = models.CharField(max_length=100, choices=CHANNEL_TYPE, default="Islamic Economical System")
     Thumbnail = models.ImageField(upload_to="Channels/Thumbnail", null=True, blank=True)
@@ -41,28 +29,39 @@ class ChannelModel(models.Model):
     about = models.TextField()
     created_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self) -> str:
+        return self.Name
+
+
 
 class Subscription(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     channel = models.ForeignKey(ChannelModel, on_delete=models.CASCADE)
     is_subscribed = models.BooleanField(default=False)
+    
+    def __str__(self) -> str:
+        return self.user.first_name 
 
 
 class VideoCategoryModel(models.Model):
     type = models.CharField(max_length=20)
     description = models.TextField()
 
+    def __str__(self) -> str:
+        return self.type
+
 
 
 class VideoModel(models.Model):
-    creator = models.ForeignKey(PreacherAccount, on_delete=models.CASCADE)
+    creator = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     channel = models.ForeignKey(ChannelModel, on_delete=models.CASCADE)
     videoCategory = models.ForeignKey(VideoCategoryModel, on_delete=models.DO_NOTHING)
     videoFile = models.FileField(upload_to="Videos")
     Title = models.CharField(max_length=100)
     Description = models.TextField()
     uploaded_date = models.DateTimeField(auto_now=True)
-    
+
+
 class View(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.DO_NOTHING)
     is_view = models.BooleanField(default=True)
@@ -87,4 +86,3 @@ class CommentsModel(models.Model):
     video = models.ForeignKey(VideoModel, on_delete=models.CASCADE)
     text = models.CharField(max_length=100)
     commented_date = models.DateTimeField(auto_now=True)
-

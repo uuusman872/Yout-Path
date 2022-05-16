@@ -7,8 +7,8 @@
 
 <div class="container">
 
-    <form id="signup">
-
+    <form id="signup" method="POST">
+        {% csrf_token %}
         <div class="header">
         
             <h3>Sign Up</h3>
@@ -20,14 +20,9 @@
         <div class="sep"></div>
 
         <div class="inputs">
-        
-            <input type="email" placeholder="e-mail" autofocus />
-        
-            <input type="password" placeholder="Password" />
-            
-
-            
-            <a id="submit" href="#">SIGN UP </a>
+                {{user_form.as_p}}
+                {{AccountForm.as_p}}
+                <input type="submit" >
             <div class="checkboxy">
                 <a href="{% url 'login' %}"> Already Registerd?</a>
             </div>

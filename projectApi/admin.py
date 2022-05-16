@@ -6,8 +6,6 @@ from .models import *
 admin.site.register(UserModel)
 admin.site.register(VideoModel)
 admin.site.register(CommentsModel)
-admin.site.register(PreacherAccount)
-admin.site.register(CommonUserAccount)
 admin.site.register(ChannelModel)
 admin.site.register(VideoCategoryModel)
 admin.site.register(Dislike)
