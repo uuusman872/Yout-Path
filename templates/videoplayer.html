@@ -14,33 +14,30 @@
                 <video width="600px" height="515" controls>
                     <source src="{{video.videoFile.url}}" type="video/mp4">
                 </video> 
-            <div class="video-title">Title of videos   <2</div>
+            <div class="video-title">{{video.Title}}</div>
             <div class="number-of-views">
-                <span>123,123,000 views </span>
+                <span>{{num_views}} views </span>
             </div>
             <div class="like-and-dislike-section">
-                <i class="material-icons">thumb_up</i> <span
-                    class='likes-share like-share-elements'> 123 </span>
-                    <i class="material-icons">thumb_down</i> <span 
-                    class='likes-share like-share-elements'> 5 </span>
+               <a href="{% url 'video-like' video.id %}"><i class="material-icons">thumb_up</i> <span class='likes-share like-share-elements'> {{like_count}} </span> </a>
+               <a href="{% url 'video-dislike' video.id %}"><i class="material-icons">thumb_down</i> <span class='likes-share like-share-elements'> {{dislike_count}} </span></a>
                     
             </div>
 
             <div class='user-info'>
                 <!-- <div class="subscribe-button"> -->
                 <button class="subscribe-button">SUBSCRIBE</button>
-                <img class='user-pic' src="{% static 'images/YouTube-Logo.png' %}" alt="user profile picture">
-                <span class='user-name'>Benjamin Parker</span>
+                <img class='user-pic' src="{{channel_name.Thumbnail.url}}" alt="user profile picture">
+                <span class='user-name'>{{channel_name.Name}}</span>    
                 <br>
-                <span class='num-subscribers'>2.8m subscribers</span>
-                <div class='video-description'>Here it goes a compillation of nature songs to make you relax and
-                    enjoy your free time.</div>
+                <span class='num-subscribers'>{{subs}} subscribers</span>
+                <div class='video-description'>{{channel_name.about}}</div>
     
                 <!-- </div> -->
 
             </div>
             <div class="comments-review">
-                <span> 810 Comments </span><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> 
+                <span> {{num_comments}} Comments </span><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> 
             </div>
             <div class="grid-comments">
                 <div class="grid-item-comment">
@@ -61,6 +58,12 @@
                 </div>
 
 
+                <form action="{% url 'add_comment' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{video.id}}" name="videoId">
+                    {{ comment_form.as_p }}
+                    <input type="submit">
+                </form>
 
             </div>
         </div>

@@ -29,9 +29,6 @@ class ChannelModel(models.Model):
     about = models.TextField()
     created_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self) -> str:
-        return self.Name
-
 
 
 class Subscription(models.Model):
@@ -39,8 +36,6 @@ class Subscription(models.Model):
     channel = models.ForeignKey(ChannelModel, on_delete=models.CASCADE)
     is_subscribed = models.BooleanField(default=False)
     
-    def __str__(self) -> str:
-        return self.user.first_name 
 
 
 class VideoCategoryModel(models.Model):
@@ -71,7 +66,7 @@ class Like(models.Model):
     id = models.AutoField(primary_key=True)
     is_liked = models.BooleanField(default=False)
     video = models.ForeignKey(VideoModel, on_delete=models.CASCADE, related_name='like')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
 
 
 class Dislike(models.Model):

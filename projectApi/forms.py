@@ -1,6 +1,3 @@
-import django
-
-
 from django import forms
 from django.contrib.auth.models import User
 from projectApi.models import ChannelModel, CommentsModel, UserModel, VideoModel
@@ -11,6 +8,7 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'username', 'password']
+
 
 class CreateAccountForm(forms.ModelForm):
     class Meta:
@@ -30,11 +28,11 @@ class CreateChannelForm(forms.ModelForm):
         fields = ["Name", "Type", "Thumbnail", "banner", "about"]
 
 
-
 class UploadVideoForm(forms.ModelForm):
     class Meta:
         model = VideoModel
         fields = ["videoCategory", "videoFile", "Title", "Description"]
+
 
 class AddCommentForm(forms.ModelForm):
     class Meta:
