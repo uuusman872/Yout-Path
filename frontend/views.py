@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from projectApi.models import ChannelModel, CommentsModel, Dislike, Like, Subscription, UserModel, VideoModel, View
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+
 # Create your views here.
 
 def login_excluded(redirect_to):
@@ -23,8 +25,14 @@ def login_excluded(redirect_to):
 
 def index(request):
     videos = VideoModel.objects.all().order_by("uploaded_date")
-    print(videos)
-    return render(request, "index.html" )
+    context_list = []
+    for vid in videos:
+        views = View.objects.filter(video=vid).count()
+        context_list.append({"object": vid, "views": views})
+    context = {
+        "context_list": context_list
+    }
+    return render(request, "index.html", context=context)
 
 
 def videos(request):
@@ -226,3 +234,15 @@ def addComment(request):
             comment.video = VideoModel.objects.get(id=id)
             comment.save()
     return redirect('videoplayer', id)
+
+
+
+def searchVideo(request):
+    if request.method == "POST":
+        text = request.POST["search"]
+        videos_list = VideoModel.objects.filter(Q(Title__icontains=text) | Q(Description__icontains=text))
+        context = {
+            "video_list": videos_list
+        }
+        return render(request, 'searchResults.html', context)
+    return redirect('badRequest.html')

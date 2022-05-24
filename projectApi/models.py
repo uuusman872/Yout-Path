@@ -52,6 +52,7 @@ class VideoModel(models.Model):
     channel = models.ForeignKey(ChannelModel, on_delete=models.CASCADE)
     videoCategory = models.ForeignKey(VideoCategoryModel, on_delete=models.DO_NOTHING)
     videoFile = models.FileField(upload_to="Videos")
+    videoThumbnail = models.ImageField(upload_to="Videos/thumbnails", null=True, blank=True)
     Title = models.CharField(max_length=100)
     Description = models.TextField()
     uploaded_date = models.DateTimeField(auto_now=True)

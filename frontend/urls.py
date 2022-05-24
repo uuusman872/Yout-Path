@@ -14,6 +14,7 @@ urlpatterns = [
     path('liked-video-list', views.likedVideoViewList, name="liked-video-list"),
     path('your_video_list_view', views.YourVideoListView, name="your_video_list_view"),
     path('subscription-list', views.userSubscriptionView, name="subscription-list"),
+    path('search_video', views.searchVideo, name="search_video"),
     path('login', views.login, name="login"),
     path('register/<slug:user_role>', views.register, name="register"),
     path('profile', views.profile, name="profile"),
