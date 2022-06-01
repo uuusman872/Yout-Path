@@ -1,3 +1,4 @@
+from cgitb import text
 from django import forms
 from django.contrib.auth.models import User
 from projectApi.models import ChannelModel, CommentsModel, UserModel, VideoModel
@@ -35,6 +36,7 @@ class UploadVideoForm(forms.ModelForm):
 
 
 class AddCommentForm(forms.ModelForm):
+    text= forms.CharField(label='', max_length=100 , widget=forms.TextInput(attrs={'class': "comment-textinput", 'placeholder' : "Add a Comment"}))
     class Meta:
         model = CommentsModel
         fields = ["text"]

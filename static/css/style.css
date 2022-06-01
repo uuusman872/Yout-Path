@@ -21,7 +21,7 @@ body {
   align-items: center;
   height: 80px;
   padding: 15px;
-  background: #00233d;
+  background: rgb(32, 32, 32)
 }
 
 .header__left {
@@ -71,7 +71,8 @@ body {
   height: calc(100vh - 70px);
   display: flex;
   /* overflow: hidden; */
-  background-color: #1A5080;
+  background-color: rgb(24, 24, 24);
+  
 
 
 }
@@ -79,8 +80,10 @@ body {
 .sidebar {
   height: 100%;
   width: 230px;
-  background-color: #00233d;
+  background: rgb(32 32 32);
   overflow-y: scroll;
+  margin-bottom: -5000px; /* any large number will do */
+  padding-bottom: 3000px; 
 }
 
 .sidebar__categories {
@@ -119,18 +122,18 @@ hr {
 /* videos */
 
 .videos {
-  background-color: #1A5080;
+  background-color: rgb(24, 24, 24);
   width: 100%;
   height: 100%;
   padding: 15px 15px;
   border-top: 1px solid #698eff;
-  overflow-y: scroll;
+
 }
 
 .videos__container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
 
@@ -280,3 +283,5 @@ a{
   text-decoration: none;
   color: #F8AB2F;
 }
+
+

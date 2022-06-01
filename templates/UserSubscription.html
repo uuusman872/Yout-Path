@@ -1,19 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
 
 
-    {% for s in subs %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block main %}
 
-    <h1> {{ s.channel.Name }} </h1>
 
-    {% endfor %}
+    <!-- Main Body Starts -->
+    <div class="mainBody">
+
+      {% include 'includes/sidebar.html' %}
+
+      <!-- Videos Section -->
+      {% for s in subs %}
+      <div class='user-info'>
+        <!-- <div class="subscribe-button"> -->
+        
+        <img class='user-pic' src="{{s.channel.Thumbnail.url}}" alt="user profile picture">
+        <span class='user-name'>{{s.channel.Name}}</span>
+        <br>
+        <span class='num-subscribers'>{{subs}}</span>
+
+        <button class="subscribe-button">SUBSCRIBE</button>
+        {% endfor %}
+    </div>
     
-</body>
-</html>
+     
+    </div>
+ 
+    <!-- Main Body Ends -->
+    
+    
+{% endblock main %}

@@ -1,19 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block main %}
+
+
+    <!-- Main Body Starts -->
+    <div class="mainBody">
+
+      {% include 'includes/sidebar.html' %}
+
+      <!-- Videos Section -->
+      
+      <div id="text" class="videos">
+        <h1>Recommended</h1>
+        {% for vid in user_videos %}
+        <a href="{% url 'videoplayer' vid.id %}">
+        <div class="videos__container">
+          <!-- Single Video starts -->
+          <div class="video">
+            <div class="video__thumbnail">
+              <img src="{{vid.videoThumbnail.url}}" alt="" />
+            </div>
+            <div class="video__details">
+              <div class="author">
+                <img src="{{vid.channel.Thumbnail.url}}" alt="" />
+              </div>
+              <div class="title">
+                <h3>
+                    {{vid.Title}}
+                </h3>
+                <a href="">{{vid.channel.Name}}</a>
+                <span> {{ vid.views }} Views • {{vid.uploaded_date}} </span>
+              </div>
+            </div>
+          </div>
+          <!-- Single Video Ends -->
+          {% endfor %}
+
     
-
-    {% for vid in user_videos %}
-    <h1> {{vid.Title}} </h1>
-    <h1> {{vid.Description}} </h1>
-
-    <hr>
-    {% endfor %}
-</body>
-</html>
+        </div>
+      </a>
+      </div>
+    </div>
+ 
+    <!-- Main Body Ends -->
+    
+    
+{% endblock main %}

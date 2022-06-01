@@ -42,7 +42,7 @@
             <div class="grid-comments">
                 <div class="grid-item-comment">
                     <div class="viewer-info">
-                        <img class="circle-icon" src="{% static 'images/YouTube-Logo.png' %}" alt="user-img">
+                        <img class="circle-icon" src="{% static 'images/PNG Logo - Youth Path (English Color).png' %}" alt="user-img">
                         <span class="comment-title">Cafe Music BGM channel</span>
                         <span class="gray-color">1 year ago</span>
                     </div>
@@ -50,9 +50,9 @@
                     <p class='comment-description'>I subscribe when I woke up and didn’t realize but then like it on
                         purpose 😜😂😂😂😂😅</p>
                     <div class="like-and-dislike-section-comments">
-                        <i class="material-icons">thumb_up</i>  <span> 1 </span>
+                        <!-- <i class="material-icons">thumb_up</i>  <span> 1 </span>
                         <i class="material-icons">thumb_down</i> <span> 546 </span>
-                        <span class="reply-button">REPLY</span>
+                        <span class="reply-button">REPLY</span> -->
                     </div>
                     
                 </div>
@@ -62,7 +62,7 @@
                     {% csrf_token %}
                     <input type="hidden" value="{{video.id}}" name="videoId">
                     {{ comment_form.as_p }}
-                    <input type="submit">
+                    <input type="submit" class="add-comment" value="Add Comment">
                 </form>
 
             </div>

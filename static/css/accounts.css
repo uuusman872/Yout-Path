@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 body {
     font-family: 'Roboto', sans-serif;
-    background: #1a5080;
+    background-color: rgb(24, 24, 24);
   }
 .container {
     width: 406px;
@@ -11,7 +11,7 @@ body {
 
 #signup {
     padding: 0px 25px 25px;
-    background:  #1a5080;;
+    background-color: rgb(24, 24, 24);
     box-shadow: 
         0px 0px 0px 5px rgba(255, 255, 255, 0.4), 
         0px 4px 20px rgba( 0,0,0,0.33 );
@@ -53,11 +53,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white
 
 }
 
 #signup .inputs label {
-    color: #8f8f8f;
+    color: #F8AB2F;
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 1px;
@@ -73,7 +74,7 @@ input:-moz-placeholder {
     color:    #b5b5b5;
 }
 
-#signup .inputs input[type=email], input[type=password] {
+#signup .inputs input,textarea {
     background: #f5f5f5;
     font-size: 0.8rem;
     border-radius: 3px;
@@ -85,7 +86,7 @@ input:-moz-placeholder {
     clear: both;
 }
 
-#signup .inputs input[type=email]:focus, input[type=password]:focus {
+#signup .inputs input:focus {
     background: #fff;
     box-shadow: 0px 0px 0px 3px #ff9b8e, inset 0px 2px 3px rgba( 0,0,0,0.2 ), 0px 5px 5px rgba( 0,0,0,0.15 );
     outline: none;   
@@ -144,4 +145,8 @@ a{
 #signup .inputs #submit:hover {
     background: black
     
+}
+
+.helptext,.errorlist{
+    display: none;
 }

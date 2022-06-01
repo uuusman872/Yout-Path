@@ -3,21 +3,21 @@
   height: calc(100vh - 70px);
   display: flex;
   /* overflow: hidden; */
-  background-color: #1A5080;
+  background-color: rgb(24, 24, 24);
   flex-wrap: wrap;
   margin: 0 auto;
 
 }
 
 body {
-  background-color: #1A5080;
+  background-color: rgb(24, 24, 24);
   font-family: roboto, sans-serif;
 }
 
 .container {
   padding-top: 30px;
-  max-width: 75%;
   padding-left: 5%;
+  margin: 0 auto;
 }
 
 nav {
@@ -84,7 +84,7 @@ nav {
 }
 
 .like-and-dislike-section {
-  padding-left: 550px;
+
   color: #636363;
 
   display: flex;
@@ -106,9 +106,6 @@ nav {
 
 /* Video info and description */
 
-.video-info {
-  padding-top: 10px;
-}
 
 .user-info {
   margin-right: 10px;
@@ -155,7 +152,7 @@ nav {
 .comments-review {
   padding-top: 10px;
   margin-top: 10px;
-  border-top: 1px solid #dbdbdb;
+  border-top: 1px solid #016BA8 
 
 }
 
@@ -255,7 +252,7 @@ nav {
 }
 
 .recommended-video-title {
-  color: black;
+  color: #f8ab2f;
   font-family: roboto, sans-serif;
   font-size: 14px;
   font-weight: bold;
@@ -264,7 +261,7 @@ nav {
 .recommended-video-channel,
 .recommended-video-views,
 .autoplay {
-  color: #636363;
+  color: #fc9d05;
   font-family: roboto, sans-serif,;
   font-size: 13px;
 }
@@ -273,4 +270,40 @@ nav {
   padding-left: 11px;
   font-size: 18px;
   color: blue;
+}
+
+.comment-textinput{
+  width: 100%;
+  border: none;
+  background-color: rgb(24, 24, 24);
+  padding: 5px 10px;
+  border-radius: 5px 5px 5px 5px;
+  border-bottom: 2px solid #016BA8;
+  transition: all 0.5s;
+  margin-top: 15px;
+  color: white;
+  
+}
+
+.comment-textinput:focus{
+
+  overflow: auto;
+  outline: none;
+}
+
+.add-comment{
+  background: #016ba8;
+	color: #fff;
+	padding: 10px 10px;
+	border: none;
+	margin-top: 0px;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
+	transition: 1s all;
+	font-size: 10px;
+	border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
