@@ -32,7 +32,7 @@ class CreateChannelForm(forms.ModelForm):
 class UploadVideoForm(forms.ModelForm):
     class Meta:
         model = VideoModel
-        fields = ["videoCategory", "videoFile", "Title", "Description"]
+        fields = ["videoCategory", "videoFile", "videoThumbnail", "Title", "Description"]
 
 
 class AddCommentForm(forms.ModelForm):

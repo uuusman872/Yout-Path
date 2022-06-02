@@ -26,25 +26,24 @@
 
             <div class='user-info'>
                 <!-- <div class="subscribe-button"> -->
-                  
-                 {% if subs %}
-                             
+
+                {% if is_subscribed %}
+
+                    {{ is_subscribed }}
                  <form action="{% url 'unsubscribe-channel' %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="v_id" id="" value="{{video.id}}">
                     <input type="hidden" name="c_id" id="" value="{{channel_name.id}}">
                     <input class="subscribe-button" value="UNSUBSCRIBE" type="submit">
-                </form>
-
-                 {% else %}
-                 
-                 <form action="{% url 'subscribe-channel' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="v_id" id="" value="{{video.id}}">
-                    <input type="hidden" name="c_id" id="" value="{{channel_name.id}}">
-                    <input class="subscribe-button" value="SUBSCRIBE" type="submit">
-                </form>
-                 {% endif %}
+                 </form>
+                {% else %}
+                    <form action="{% url 'subscribe-channel' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="v_id" id="" value="{{video.id}}">
+                        <input type="hidden" name="c_id" id="" value="{{channel_name.id}}">
+                        <input class="subscribe-button" value="SUBSCRIBE" type="submit">
+                    </form>
+                {% endif %}
              
                
 

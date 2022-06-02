@@ -54,6 +54,11 @@ def videoplayer(request, pk_id):
     else: 
         subs = 0
 
+    if Subscription.objects.filter(Q(user=user) & Q(channel=channel_name)).exists():
+        is_subscribed = Subscription.objects.filter(Q(user=user) & Q(channel=channel_name))[0].is_subscribed
+    else:
+        is_subscribed = False
+
     if View.objects.filter(video=video).filter(user=user).exists():
         num_views = View.objects.filter(video=video).count()
 
@@ -88,10 +93,9 @@ def videoplayer(request, pk_id):
         "dislike_count": str(dislike_count),
         "num_comments": num_comments,
         "comments": comments,
-        "comment_form": form
+        "comment_form": form,
+        "is_subscribed": is_subscribed
     }
-    print("[+] The context data is ", context)
-
     return render(request, "videoplayer.html", context)
 
 
@@ -99,8 +103,14 @@ def videoplayer(request, pk_id):
 def LikeVideo(request, vid):
     user = UserModel.objects.get(user=request.user)
     video = VideoModel.objects.get(id=vid)
+
     if not Like.objects.filter(user=user, video=video).exists():
         Like.objects.create(user=user, video=video, is_liked=True)
+
+    if Dislike.objects.filter(Q(user=user) & Q(video=video)).exists():
+        dislike = Dislike.objects.filter(Q(user=user) & Q(video=video))
+        dislike.delete()
+
     return redirect('videoplayer', vid)
 
 
@@ -109,7 +119,11 @@ def DislikeVideo(request, vid):
     user = UserModel.objects.get(user=request.user)
     video = VideoModel.objects.get(id=vid)
     if not Dislike.objects.filter(user=user, video=video).exists():
-        Dislike.objects.create(user=user, video=video, is_liked=True)
+        Dislike.objects.create(user=user, video=video, is_disliked=True)
+
+    if Like.objects.filter(Q(user=user) & Q(video=video)).exists():
+        liked = Like.objects.filter(Q(user=user) & Q(video=video))
+        liked.delete()
     return redirect('videoplayer', vid)
 
 
@@ -181,15 +195,18 @@ def createChannel(request):
 
 @login_required(login_url='login')
 def upload_video(request):
-    vform = forms.UploadVideoForm(request.POST or None)
-    user_channel = ChannelModel.objects.filter(user=request.user)
+    vform = forms.UploadVideoForm(request.POST or None, request.FILES)
+    user = UserModel.objects.get(user=request.user)
+    user_channel = ChannelModel.objects.filter(User=user)
     if request.method == "POST":
-        form = vform.save(commit=False)
-        form.creator = request.user
-        form.channel = request.POST["channel"]
-        form.save()
-        return redirect('videos')
-    return render(request, "upload_video.html", context={"form":vform, "user_channel": user_channel})
+        if vform.is_valid():
+            form = vform.save(commit=False)
+            form.creator = user
+            channel_name = request.POST["channel"]
+            form.channel = ChannelModel.objects.filter(Q(User=user) & Q(Name=channel_name))[0]
+            form.save()
+            return redirect('videos')
+    return render(request, "uploadVideoContent.html", context={"form":vform, "user_channel": user_channel})
 
 @login_required(login_url='login')
 def userSubscriptionView(request):
