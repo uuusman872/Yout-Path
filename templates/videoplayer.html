@@ -11,7 +11,7 @@
         <!-- Current Video  -->
         <div class="video-info">
            
-                <video width="600px" height="515" controls>
+                <video width="700px" height="515" controls>
                     <source src="{{video.videoFile.url}}" type="video/mp4">
                 </video> 
             <div class="video-title">{{video.Title}}</div>
@@ -26,7 +26,28 @@
 
             <div class='user-info'>
                 <!-- <div class="subscribe-button"> -->
-                <button class="subscribe-button">SUBSCRIBE</button>
+                  
+                 {% if subs %}
+                             
+                 <form action="{% url 'unsubscribe-channel' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="v_id" id="" value="{{video.id}}">
+                    <input type="hidden" name="c_id" id="" value="{{channel_name.id}}">
+                    <input class="subscribe-button" value="UNSUBSCRIBE" type="submit">
+                </form>
+
+                 {% else %}
+                 
+                 <form action="{% url 'subscribe-channel' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="v_id" id="" value="{{video.id}}">
+                    <input type="hidden" name="c_id" id="" value="{{channel_name.id}}">
+                    <input class="subscribe-button" value="SUBSCRIBE" type="submit">
+                </form>
+                 {% endif %}
+             
+               
+
                 <img class='user-pic' src="{{channel_name.Thumbnail.url}}" alt="user profile picture">
                 <span class='user-name'>{{channel_name.Name}}</span>    
                 <br>
@@ -39,24 +60,25 @@
             <div class="comments-review">
                 <span> {{num_comments}} Comments </span><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> 
             </div>
+          
             <div class="grid-comments">
                 <div class="grid-item-comment">
+                    {% for com in comments %}
                     <div class="viewer-info">
-                        <img class="circle-icon" src="{% static 'images/PNG Logo - Youth Path (English Color).png' %}" alt="user-img">
-                        <span class="comment-title">Cafe Music BGM channel</span>
-                        <span class="gray-color">1 year ago</span>
+                        <img class="circle-icon" src="{{com.video.channel.Thumbnail.url}}" alt="user-img">
+                        <span class="comment-title">{{com.video.Title}}</span>
+                        <span class="gray-color">{{com.commented_date}}</span>
                     </div>
 
-                    <p class='comment-description'>I subscribe when I woke up and didn’t realize but then like it on
-                        purpose 😜😂😂😂😂😅</p>
+                    <p class='comment-description'>{{com.text}}</p>
                     <div class="like-and-dislike-section-comments">
                         <!-- <i class="material-icons">thumb_up</i>  <span> 1 </span>
                         <i class="material-icons">thumb_down</i> <span> 546 </span>
                         <span class="reply-button">REPLY</span> -->
                     </div>
-                    
+                    {% endfor %}
                 </div>
-
+        
 
                 <form action="{% url 'add_comment' %}" method="POST">
                     {% csrf_token %}

@@ -15,8 +15,8 @@ body {
 }
 
 .container {
-  padding-top: 30px;
-  padding-left: 5%;
+  /* padding-top: 30px;
+  padding-left: 5%; */
   margin: 0 auto;
 }
 
@@ -108,7 +108,7 @@ nav {
 
 
 .user-info {
-  margin-right: 10px;
+  margin: 20px;
 
 }
 
@@ -145,6 +145,7 @@ nav {
   outline: none;
   float: right;
   margin-top: 30px;
+  cursor: pointer;
 }
 
 /* Comments */
@@ -239,6 +240,7 @@ nav {
   width: 150px;
   float: left;
   padding-right: 5px;
+  margin-right: 10px;
 }
 
 .recommended-video-info {
@@ -249,6 +251,7 @@ nav {
 
 .up-next-autoplay {
   margin-bottom: 10px;
+  margin-top: 10px
 }
 
 .recommended-video-title {
@@ -306,4 +309,14 @@ nav {
 	border-radius: 5px;
   margin-top: 5px;
   margin-bottom: 10px;
+}
+
+.viewer-info span:nth-child(3){
+  margin-left: 10px
+}
+
+.subs-list{    display: flex;
+
+  align-items: center;
+  flex-direction: column;
 }

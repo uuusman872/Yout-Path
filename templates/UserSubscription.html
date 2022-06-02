@@ -13,15 +13,31 @@
 
       <!-- Videos Section -->
       {% for s in subs %}
-      <div class='user-info'>
+      <div class='user-info subs-list'>
         <!-- <div class="subscribe-button"> -->
         
         <img class='user-pic' src="{{s.channel.Thumbnail.url}}" alt="user profile picture">
         <span class='user-name'>{{s.channel.Name}}</span>
         <br>
-        <span class='num-subscribers'>{{subs}}</span>
+        <span class='num-subscribers'>{{subs.count }} Subscriber</span>
+        {% if subs %}
+                             
+                 <form action="{% url 'unsubscribe-channel' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="v_id" id="" value="{{video.id}}">
+                    <input type="hidden" name="c_id" id="" value="{{channel_name.id}}">
+                    <input class="subscribe-button" value="UNSUBSCRIBE" type="submit">
+                </form>
 
-        <button class="subscribe-button">SUBSCRIBE</button>
+                 {% else %}
+                 
+                 <form action="{% url 'subscribe-channel' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="v_id" id="" value="{{video.id}}">
+                    <input type="hidden" name="c_id" id="" value="{{channel_name.id}}">
+                    <input class="subscribe-button" value="SUBSCRIBE" type="submit">
+                </form>
+                 {% endif %}
         {% endfor %}
     </div>
     

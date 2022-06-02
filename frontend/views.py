@@ -83,7 +83,7 @@ def videoplayer(request, pk_id):
         "video" : video,
         "num_views": num_views,
         "channel_name":channel_name,
-        "subs": str(subs),
+        "subs": subs,
         "like_count": str(like_count),
         "dislike_count": str(dislike_count),
         "num_comments": num_comments,
@@ -246,3 +246,29 @@ def searchVideo(request):
         }
         return render(request, 'searchResults.html', context)
     return redirect('badRequest.html')
+
+def subscribeChannel(request):
+    if request.method == "POST":
+        c_id = request.POST['c_id']
+        v_id = request.POST['v_id']
+        user = UserModel.objects.get(user=request.user)
+        channel = ChannelModel.objects.get(id=c_id)
+        if not Subscription.objects.filter(Q(channel=channel) & Q(user=user)).exists():
+            Subscription.objects.create(user=user, channel=channel, is_subscribed=True)
+        return redirect('videoplayer', v_id)
+    else:
+        return HttpResponse("Page Not Found")
+
+
+def unsubscribeChannel(request):
+    if request.method == "POST":
+        c_id = request.POST['c_id']
+        v_id = request.POST['v_id']
+        user = UserModel.objects.get(user=request.user)
+        channel = ChannelModel.objects.get(id=c_id)
+        if Subscription.objects.filter(Q(channel=channel) & Q(user=user)).exists():
+            user = Subscription.objects.filter(Q(channel=channel) & Q(user=user))[0]
+            user.delete()
+        return redirect('videoplayer', v_id)
+    else:
+        return HttpResponse("Page Not Found")
