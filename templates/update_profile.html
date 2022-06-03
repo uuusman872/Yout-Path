@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ request.user }}
+    <label> First Name </label>
+    <input type="text" name="first_name">
+    <label> Last Name </label>
+    <input type="text" name="last_name">
+    <label> Phone Number </label>
+    <input type="number" name="phoneNumber">
+    <label> Profile Image </label>
+    <input type="file" name="profileImage">
+    <input type="submit" value="submit">
+</form>
+
+
+</body>
+</html>

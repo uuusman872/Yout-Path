@@ -1,5 +1,3 @@
-from multiprocessing import context
-from operator import le
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from projectApi import forms
@@ -8,6 +6,7 @@ from django.contrib import auth
 from projectApi.models import ChannelModel, CommentsModel, Dislike, Like, Subscription, UserModel, VideoModel, View
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 
@@ -17,9 +16,7 @@ def login_excluded(redirect_to):
             if request.user.is_authenticated:
                 return redirect(redirect_to)
             return view_method(request, *args, **kwargs)
-
         return _arguments_wrapper
-
     return _method_wrapper
 
 
@@ -174,8 +171,8 @@ def register(request, user_role):
     return render(request, "accounts/register.html", context)
 
 
-def profile(rquest):
-    return render(rquest, "profile.html")
+# def profile(rquest):
+#     return render(rquest, "profile.html")
 
 
 def uploadVideos(request):
@@ -264,6 +261,7 @@ def searchVideo(request):
         return render(request, 'searchResults.html', context)
     return redirect('badRequest.html')
 
+@login_required(login_url='login')
 def subscribeChannel(request):
     if request.method == "POST":
         c_id = request.POST['c_id']
@@ -276,7 +274,7 @@ def subscribeChannel(request):
     else:
         return HttpResponse("Page Not Found")
 
-
+@login_required(login_url='login')
 def unsubscribeChannel(request):
     if request.method == "POST":
         c_id = request.POST['c_id']
@@ -289,3 +287,43 @@ def unsubscribeChannel(request):
         return redirect('videoplayer', v_id)
     else:
         return HttpResponse("Page Not Found")
+
+@login_required(login_url='login')
+def update_profile(request):
+    if request.method == "POST":
+        user = UserModel.objects.get(user=request.user)
+
+        user_obj = user.user
+        user_obj.first_name = request.POST['first_name']
+        user_obj.last_name = request.POST['last_name']
+        user_obj.save()
+
+        user.phoneNumber = request.POST['phoneNumber']
+
+        profileImage = request.FILES['profileImage']
+        if profileImage is not None:
+            fs = FileSystemStorage()
+            filename = fs.save(profileImage.name, profileImage)
+            uploaded_file_url = fs.url(filename)
+            user.profile_image.name = profileImage.name
+        user.save()
+        return redirect('home')
+    return render(request, 'update_profile.html')
+
+@login_required(login_url='login')
+def update_password(request):
+    if request.method == "POST":
+        user = UserModel.objects.get(user=request.user)
+        user_obj = user.user
+        old_password = request.POST['old_password']
+        password = request.POST['password']
+        c_password = request.POST['c_password']
+        is_user = auth.authenticate(username=user_obj.username, password=old_password)
+        if is_user:
+            if password == c_password:
+                user_obj.set_password(password)
+                user_obj.save()
+                return redirect("login")
+        else:
+            return HttpResponse("User Not Found")
+    return render(request, "change_password.html")

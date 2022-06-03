@@ -8,6 +8,7 @@ class UserModel(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     phoneNumber = models.IntegerField()
+    profile_image = models.ImageField(upload_to="profile/", null=True, blank=True)
     specialization = models.TextField(null=True, blank=True)
     certification = models.FileField(upload_to="Certification", null=True, blank=True)
     is_preacher = models.BooleanField(default=False)
