@@ -13,10 +13,12 @@
       
       <div id="text" class="videos">
         <h1>Recommended</h1>
-        {% for objlist in context_list %}
-        <a href="{% url 'videoplayer' objlist.object.id %}">
+        
+        
         <div class="videos__container">
           <!-- Single Video starts -->
+          {% for objlist in context_list %}
+          <a href="{% url 'videoplayer' objlist.object.id %}">
           <div class="video">
             <div class="video__thumbnail">
               <img src="{{objlist.object.videoThumbnail.url}}" alt="" />
@@ -35,10 +37,11 @@
             </div>
           </div>
           <!-- Single Video Ends -->
+        </a>
           {% endfor %}
-
     
         </div>
+       
       </a>
       </div>
     </div>

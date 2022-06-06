@@ -15,9 +15,10 @@ body {
 }
 
 .container {
-  /* padding-top: 30px;
-  padding-left: 5%; */
+
   margin: 0 auto;
+  margin-top: 20px;
+
 }
 
 nav {
@@ -319,4 +320,16 @@ nav {
 
   align-items: center;
   flex-direction: column;
+}
+
+.video-size{
+  width:700px;
+  height:515px ;
+}
+
+@media (max-width: 768px) {
+  .video-size{
+    width: 100%;
+  }
+
 }

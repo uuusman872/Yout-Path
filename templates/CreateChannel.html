@@ -4,7 +4,7 @@
 {% load static %}
 {% block title %} Home {% endblock title %}
 {% block main %}
-
+{% load crispy_forms_tags %} 
 
 
 <div class="container">
@@ -22,7 +22,24 @@
         <div class="sep"></div>
 
         <div class="inputs">
-            {{ channelForm }}
+            <div class="row">
+                <div class="col">
+                    {{channelForm.Name|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{channelForm.Type|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{channelForm.Thumbnail|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{channelForm.banner|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{channelForm.about|as_crispy_field}}
+                </div>
+            </div>
+  
                 <input type="submit"  value="Create Channel">
         
             

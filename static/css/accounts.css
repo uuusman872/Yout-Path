@@ -4,9 +4,8 @@ body {
     background-color: rgb(24, 24, 24);
   }
 .container {
-    width: 406px;
-    max-width: 406px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
 #signup {
@@ -42,7 +41,7 @@ body {
 #signup .sep {
     height: 1px;
     background: #e8e8e8;
-    width: 406px;
+    
     margin: 0px -25px;
 }
 
@@ -80,11 +79,12 @@ input:-moz-placeholder {
     border-radius: 3px;
     border: none;
     padding: 13px 10px;
-    width: 330px;
+    width: 330px !important;
     margin-bottom: 20px;
     box-shadow: inset 0px 2px 3px rgba( 0,0,0,0.1 );
     clear: both;
     color: black;
+
 }
 
 #signup .inputs input:focus {
@@ -148,6 +148,20 @@ a{
     
 }
 
-.helptext,.errorlist{
-    display: none;
+.col{
+    display: flex;
+    justify-content: center;
+}
+.text-muted{
+    width: 300px;
+}
+textarea[name=specialization]{
+    height: 51px;
+}
+input[type=submit]{
+    cursor: pointer;
+}
+
+textarea[name=about],textarea[name=Description]{
+    height: 51px;
 }

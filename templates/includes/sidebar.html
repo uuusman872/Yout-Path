@@ -3,41 +3,56 @@
    <!-- Sidebar Starts -->
    <div class="sidebar">
     <div class="sidebar__categories">
+
+      <a href="{% url 'home' %}">
       <div class="sidebar__category">
         <i class="material-icons">home</i>
-        <span><a href="{% url 'home' %}">Home</a></span>
+        <span>Home</span>
       </div>
+      </a>
       <!-- <div class="sidebar__category">
         <i class="material-icons">local_fire_department</i>
         <span>Trending</span>
       </div> -->
+      <a href="{% url 'subscription-list' %}">
       <div class="sidebar__category">
         <i class="material-icons">subscriptions</i>
-        <span><a href="{% url 'subscription-list' %}">Subscriptions</a></span>
+        <span>Subscriptions</span>
       </div>
+      </a>
     </div>
+
     <hr />
+
     <div class="sidebar__categories">
+
+      <a href="#">
       <div class="sidebar__category">
         <i class="material-icons">library_add_check</i>
-        <span><a href="#">Library</a></span>
+        <span>Library</span>
       </div>
+      </a>
       <!-- <div class="sidebar__category">
         <i class="material-icons">history</i>
         <span>History</span>
       </div> -->
+      <a href="{% url 'your_video_list_view' %}">
       <div class="sidebar__category">
         <i class="material-icons">play_arrow</i>
-        <span><a href="{% url 'your_video_list_view' %}">Your Videos</a></span>
+        <span>Your Videos</span>
       </div>
+      </a>
       <!-- <div class="sidebar__category">
         <i class="material-icons">watch_later</i>
         <span>Watch Later</span>
       </div> -->
+      <a href="{% url 'liked-video-list' %}">
       <div class="sidebar__category">
         <i class="material-icons">thumb_up</i>
-        <span><a href="{% url 'liked-video-list' %}">Liked videos</a></span>
+        <span>Liked videos</span>
       </div>
+      </a>
+
     </div>
     <hr />
    

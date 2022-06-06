@@ -1,24 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <form action="" enctype="multipart/form-data" method="POST">
+
+{% extends 'accounts/accounts_base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block main %}
+{% load crispy_forms_tags %} 
+
+
+<div class="container">
+
+    <form id="signup" action="" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <select name="channel">
-            {% for channel in user_channel %}
-            <option value="{{ channel.Name }}"> {{ channel.Name }} </option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="submit">
+        <div class="header">
+        
+            <h3>Create Channel</h3>
+            
+            <p>Fill and boom</p>
+            
+        </div>
+        
+        <div class="sep"></div>
+
+        <div class="inputs">
+            <div class="row">
+                <div class="col">
+                    {{form.videoCategory|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{form.Title|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{form.videoFile|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{form.videoThumbnail|as_crispy_field}}
+                </div>
+                
+                <div class="col">
+                    {{form.Description|as_crispy_field}}
+                </div>
+            </div>
+
+                <select name="channel">
+                    <option value="" disabled selected>Select Channel</option>
+                    {% for channel in user_channel %}
+                    
+                    <option value="{{ channel.Name }}"> {{ channel.Name }} </option>
+                    {% endfor %}
+                </select>
+
+            <input type="submit"  value="Upload">
+            <input type="reset" name="" id="">
+            
+            <div class="checkboxy">
+                <a href="{% url 'home' %}"> Back?</a>
+            </div>
+
+        </div>
+
     </form>
 
+</div>
+</div>
+​
 
-</body>
-</html>
+{%endblock main%}

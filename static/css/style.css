@@ -133,13 +133,13 @@ hr {
 .videos__container {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: left;
   flex-wrap: wrap;
 }
 
 .video {
   width: 310px;
-
+  margin-right: 20px;
   margin-bottom: 30px;
 }
 
@@ -214,7 +214,16 @@ h1 {
   .header__search {
     display: none;
   }
+  .recommended-videos{
+    width: auto !important;
+  }
 
+}
+
+@media (max-width: 946px) {
+  .header__search input {
+    width: 300px;
+  }
   .sidebar {
     display: none;
   }
@@ -224,12 +233,7 @@ h1 {
     position: fixed;
     top: 4.4rem;
     height: auto;
-  }
-}
-
-@media (max-width: 941px) {
-  .header__search input {
-    width: 300px;
+    z-index: 1;
   }
 }
 

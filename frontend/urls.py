@@ -22,7 +22,8 @@ urlpatterns = [
     path("create_channel", views.createChannel, name="createChannel"),
     path("upload_video", views.upload_video, name="upload-video"),
     path("subscribe-channel", views.subscribeChannel, name="subscribe-channel"),
-    path("unsubscribe-channel", views.unsubscribeChannel, name="unsubscribe-channel")
+    path("unsubscribe-channel", views.unsubscribeChannel, name="unsubscribe-channel"),
+    path("register_selection", views.register_selection, name="register_selection")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

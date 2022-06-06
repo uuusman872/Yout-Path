@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %} Home {% endblock title %}
 {% block main %}
-
+{% load crispy_forms_tags %} 
 
 
 <div class="container">
@@ -19,9 +19,46 @@
         
         <div class="sep"></div>
 
+
+        
         <div class="inputs">
-                {{user_form.as_p}}
-                {{AccountForm.as_p}}
+            <div class="row">
+                <div class="col">
+                    {{user_form.first_name|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{user_form.last_name|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{user_form.email|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{user_form.username|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{user_form.password|as_crispy_field}}
+                </div>
+                <div class="col">
+                    {{AccountForm.phoneNumber|as_crispy_field}}
+                </div>
+
+               {% if AccountForm.certification %}
+
+                    <div class="col">
+                        {{AccountForm.certification|as_crispy_field}}
+                    </div>
+
+                    <div class="col">
+                        {{AccountForm.specialization|as_crispy_field}}
+                    </div>
+
+                {% endif %}
+
+            </div>
+  
+   
+
+               
                 <input type="submit" >
             <div class="checkboxy">
                 <a href="{% url 'login' %}"> Already Registerd?</a>

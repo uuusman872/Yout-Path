@@ -42,6 +42,12 @@ def channels(request):
 
 @login_required(login_url='login')
 def videoplayer(request, pk_id):
+    videos = VideoModel.objects.all().order_by("uploaded_date")
+    context_list = []
+    for vid in videos:
+        views = View.objects.filter(video=vid).count()
+        context_list.append({"object": vid, "views": views})
+
     video = VideoModel.objects.get(id=pk_id)
     user = UserModel.objects.get(user=request.user)
     channel_name = video.channel
@@ -82,6 +88,7 @@ def videoplayer(request, pk_id):
         comments = []
 
     context = {
+        "context_list": context_list,
         "video" : video,
         "num_views": num_views,
         "channel_name":channel_name,
@@ -135,6 +142,7 @@ def login(request):
             return redirect('home')
         else:
             return redirect('login')
+            
     return render(request, "accounts/login.html")
 
 
@@ -327,3 +335,6 @@ def update_password(request):
         else:
             return HttpResponse("User Not Found")
     return render(request, "change_password.html")
+
+def register_selection(request):
+    return render(request, "accounts/register_selection.html")
