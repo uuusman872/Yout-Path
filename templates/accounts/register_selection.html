@@ -16,9 +16,12 @@
         <div class="sep"></div>
 
         <div class="inputs">
-        
-            <input type="submit" value="Preacher" href="">
-            <input type="submit" value="Common" href="">
+
+{#            <input type="submit" value="Preacher" href="">#}
+{#            <input type="submit" value="Common" href="">#}
+
+            <a href="{% url 'register' %}?user-role=Preacher"> Preacher </a>
+            <a href="{% url 'register' %}?user-role=Common"> Common </a>
 
             <div class="checkboxy">
                 <a href="{% url 'login' %}"> Already have an account?</a>

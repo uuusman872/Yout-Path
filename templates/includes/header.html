@@ -26,7 +26,7 @@
       {% comment %} <i class="material-icons">apps</i>
       <i class="material-icons">notifications</i> {% endcomment %}
       <a href="{% url 'profile' %}"><i class="material-icons display-this">account_circle</i></a>
-      
+      <p> {{ request.user }} </p>
     </div>
   </div>
   <!-- Header Ends -->

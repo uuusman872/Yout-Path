@@ -20,8 +20,9 @@ def login_excluded(redirect_to):
     return _method_wrapper
 
 
+from django.db.models import Count
 def index(request):
-    videos = VideoModel.objects.all().order_by("uploaded_date")
+    videos = VideoModel.objects.all().order_by("-uploaded_date")
     context_list = []
     for vid in videos:
         views = View.objects.filter(video=vid).count()
@@ -147,11 +148,12 @@ def login(request):
 
 
 
-def register(request, user_role):
+def register(request):
     user_form = forms.UserForm(request.POST or None)
-    if user_role == "common":
+    user_role = request.GET.get('user-role')
+    if user_role == "Common":
         form = forms.CreateAccountForm(request.POST or None)
-    elif user_role == 'preacher':
+    elif user_role == 'Preacher':
         form = forms.CreatePreacherAccountForm(request.POST or None)
     
     if request.method == 'POST':
@@ -200,18 +202,21 @@ def createChannel(request):
 
 @login_required(login_url='login')
 def upload_video(request):
-    vform = forms.UploadVideoForm(request.POST or None, request.FILES)
-    user = UserModel.objects.get(user=request.user)
-    user_channel = ChannelModel.objects.filter(User=user)
-    if request.method == "POST":
-        if vform.is_valid():
-            form = vform.save(commit=False)
-            form.creator = user
-            channel_name = request.POST["channel"]
-            form.channel = ChannelModel.objects.filter(Q(User=user) & Q(Name=channel_name))[0]
-            form.save()
-            return redirect('videos')
-    return render(request, "uploadVideoContent.html", context={"form":vform, "user_channel": user_channel})
+    if UserModel.objects.get(user=request.user).is_preacher:
+        vform = forms.UploadVideoForm(request.POST or None, request.FILES)
+        user = UserModel.objects.get(user=request.user)
+        user_channel = ChannelModel.objects.filter(User=user)
+        if request.method == "POST":
+            if vform.is_valid():
+                form = vform.save(commit=False)
+                form.creator = user
+                channel_name = request.POST["channel"]
+                form.channel = ChannelModel.objects.filter(Q(User=user) & Q(Name=channel_name))[0]
+                form.save()
+                return redirect('videos')
+        return render(request, "uploadVideoContent.html", context={"form":vform, "user_channel": user_channel})
+    else:
+        return HttpResponse("<h1> Page Not Found </h1>")
 
 @login_required(login_url='login')
 def userSubscriptionView(request):
@@ -262,7 +267,7 @@ def addComment(request):
 def searchVideo(request):
     if request.method == "POST":
         text = request.POST["search"]
-        videos_list = VideoModel.objects.filter(Q(Title__icontains=text) | Q(Description__icontains=text))
+        videos_list = VideoModel.objects.filter(Q(Title__icontains=text) | Q(Description__icontains=text) | Q(channel__Name__icontains=text))
         context = {
             "video_list": videos_list
         }
@@ -282,17 +287,22 @@ def subscribeChannel(request):
     else:
         return HttpResponse("Page Not Found")
 
+
 @login_required(login_url='login')
 def unsubscribeChannel(request):
     if request.method == "POST":
         c_id = request.POST['c_id']
         v_id = request.POST['v_id']
+        print(c_id)
         user = UserModel.objects.get(user=request.user)
         channel = ChannelModel.objects.get(id=c_id)
         if Subscription.objects.filter(Q(channel=channel) & Q(user=user)).exists():
             user = Subscription.objects.filter(Q(channel=channel) & Q(user=user))[0]
             user.delete()
-        return redirect('videoplayer', v_id)
+        if v_id != "":
+            return redirect('videoplayer', v_id)
+        else:
+            return redirect('subscription-list')
     else:
         return HttpResponse("Page Not Found")
 

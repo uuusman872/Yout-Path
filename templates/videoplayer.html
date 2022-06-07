@@ -28,8 +28,6 @@
                 <!-- <div class="subscribe-button"> -->
 
                 {% if is_subscribed %}
-
-                    {{ is_subscribed }}
                  <form action="{% url 'unsubscribe-channel' %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="v_id" id="" value="{{video.id}}">

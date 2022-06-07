@@ -20,24 +20,21 @@
         <span class='user-name'>{{s.channel.Name}}</span>
         <br>
         <span class='num-subscribers'>{{subs.count }} Subscriber</span>
-        {% if subs %}
-                             
+        {% if s.is_subscribed %}
                  <form action="{% url 'unsubscribe-channel' %}" method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name="v_id" id="" value="{{video.id}}">
-                    <input type="hidden" name="c_id" id="" value="{{channel_name.id}}">
+                    <input type="hidden" name="v_id" id="" value="">
+                    <input type="hidden" name="c_id" id="" value="{{s.channel.id}}">
                     <input class="subscribe-button" value="UNSUBSCRIBE" type="submit">
                 </form>
-
-                 {% else %}
-                 
+             {% else %}
                  <form action="{% url 'subscribe-channel' %}" method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name="v_id" id="" value="{{video.id}}">
-                    <input type="hidden" name="c_id" id="" value="{{channel_name.id}}">
+                    <input type="hidden" name="v_id" id="" value="">
+                    <input type="hidden" name="c_id" id="" value="{{s.channel.id}}">
                     <input class="subscribe-button" value="SUBSCRIBE" type="submit">
                 </form>
-                 {% endif %}
+             {% endif %}
         {% endfor %}
     </div>
     

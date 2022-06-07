@@ -15,6 +15,7 @@
       
       <div id="text" class="videos">
         <h1>Search Results</h1>
+      {% if video_list %}
         {% for vid in video_list %}
         <a href="">
         <div class="videos__container">
@@ -38,7 +39,9 @@
           </div>
           <!-- Single Video Ends -->
           {% endfor %}
-
+          {% else %}
+          <h1> No Search Results Found </h1>
+      {% endif %}
     
         </div>
       </a>
