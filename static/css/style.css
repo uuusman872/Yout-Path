@@ -194,6 +194,9 @@ h1 {
   display: flex;
   align-items: center;
 }
+.sidebar-search{
+  display: none !important;
+}
 @media (max-width: 425px) {
   .header__search {
     display: none;
@@ -212,6 +215,9 @@ h1 {
 @media (max-width: 768px) {
   .header__search {
     display: none;
+  }
+  .sidebar-search{
+    display: block !important;
   }
   .recommended-videos{
     width: auto !important;
