@@ -1,25 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-<form method="POST" action="" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ request.user }}
-    <label> First Name </label>
-    <input type="text" name="first_name">
-    <label> Last Name </label>
-    <input type="text" name="last_name">
-    <label> Phone Number </label>
-    <input type="number" name="phoneNumber">
-    <label> Profile Image </label>
-    <input type="file" name="profileImage">
-    <input type="submit" value="submit">
-</form>
+{% extends 'accounts/accounts_base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block main %}
 
 
-</body>
-</html>
+<div class="container">
+
+    <form id="signup" method="POST"  enctype="multipart/form-data" action="" >
+        {% csrf_token %}
+
+        <div class="header">
+            <h3>Update Profile</h3>
+        </div>
+        
+        <div class="sep"></div>
+
+        <div class="inputs">
+            <label> First Name </label>
+            <input type="text" placeholder="First Name" name="first_name" autofocus />
+            <label> Last Name </label>
+            <input type="text" placeholder="Last Name" name="last_name"/>
+            <label> Phone# </label>
+            <input type="number" placeholder="Phone number" name="phoneNumber" autofocus />
+            <label> Profile Image </label>
+            <input type="file" placeholder="Profile Image" name="profileImage"/>
+            
+    
+            <input type="submit" value="Update Profile">
+
+            
+            <div class="checkboxy">
+                <a href="{% url 'profile' %}"> Back?</a>
+            </div>
+        
+        </div>
+
+    </form>
+
+</div>
+</div>
+​
+
+{%endblock main%}

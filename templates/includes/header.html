@@ -21,12 +21,19 @@
     </div>
 
     <div class="header__icons">
-      <i class="material-icons display-this">search</i>
-      <i class="material-icons">videocam</i>
-      {% comment %} <i class="material-icons">apps</i>
-      <i class="material-icons">notifications</i> {% endcomment %}
-      <a href="{% url 'profile' %}"><i class="material-icons display-this">account_circle</i></a>
-      <p> {{ request.user }} </p>
+      <!-- <i class="material-icons display-this">search</i> -->
+      <a title="Upload Video" href="{% url 'upload-video' %}"><i class="material-icons">videocam</i></a>
+
+      <a title="Create Channel" href="{% url 'createChannel' %}"> <span class="material-icons material-symbols-outlined">draw</span></a>
+      {% if user.is_authenticated %}
+      <a title="Logout"  href="{% url 'logout' %}"><span class="material-icons material-symbols-outlined">logout</span></a>
+      {% else %}
+      <a title="Login/Register"  href="{% url 'login' %}"><span class="material-icons material-symbols-outlined">login </span></a>
+      {% endif %}
+      {% if user.is_authenticated %}
+      <a title="Profile" href="{% url 'profile' %}"><i class="material-icons display-this">account_circle</i></a>
+      <a title="Current User" href="{% url 'profile' %}"><span class="request-user"> {{ request.user }} </span></a>
+      {% endif %}
     </div>
   </div>
   <!-- Header Ends -->

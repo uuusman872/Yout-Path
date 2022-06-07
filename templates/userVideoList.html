@@ -15,9 +15,10 @@
       
       <div id="text" class="videos">
         <h1>Recommended</h1>
-        {% for vid in user_videos %}
-        <a href="{% url 'videoplayer' vid.id %}">
+
         <div class="videos__container">
+          {% for vid in user_videos %}
+          <a href="{% url 'videoplayer' vid.id %}"> 
           <!-- Single Video starts -->
           <div class="video">
             <div class="video__thumbnail">
@@ -37,11 +38,12 @@
             </div>
           </div>
           <!-- Single Video Ends -->
+        </a>
           {% endfor %}
 
     
         </div>
-      </a>
+   
       </div>
     </div>
  

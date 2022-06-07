@@ -17,13 +17,15 @@ urlpatterns = [
     path('search_video', views.searchVideo, name="search_video"),
     path('login', views.login, name="login"),
     path('register', views.register, name="register"),
-    path('profile', views.update_profile, name="profile"),
+    path('update_profile', views.update_profile, name="update_profile"),
+    path('profile', views.profile, name="profile"),
     path('update_password', views.update_password, name="update_password"),
     path("create_channel", views.createChannel, name="createChannel"),
     path("upload_video", views.upload_video, name="upload-video"),
     path("subscribe-channel", views.subscribeChannel, name="subscribe-channel"),
     path("unsubscribe-channel", views.unsubscribeChannel, name="unsubscribe-channel"),
-    path("register_selection", views.register_selection, name="register_selection")
+    path("register_selection", views.register_selection, name="register_selection"),
+    path("logout", views.logout_view, name="logout")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

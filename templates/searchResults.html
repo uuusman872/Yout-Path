@@ -15,11 +15,13 @@
       
       <div id="text" class="videos">
         <h1>Search Results</h1>
-      {% if video_list %}
-        {% for vid in video_list %}
-        <a href="">
+     
+       
         <div class="videos__container">
           <!-- Single Video starts -->
+          {% if video_list %}
+          {% for vid in video_list %}
+          <a href="{% url 'videoplayer' vid.id %}">
           <div class="video">
             <div class="video__thumbnail">
               <img src="{{vid.videoThumbnail.url}}" alt="" />
@@ -38,13 +40,14 @@
             </div>
           </div>
           <!-- Single Video Ends -->
+        </a>
           {% endfor %}
           {% else %}
           <h1> No Search Results Found </h1>
       {% endif %}
     
         </div>
-      </a>
+ 
       </div>
     </div>
  

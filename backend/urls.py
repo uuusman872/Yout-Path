@@ -20,3 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("frontend.urls")),
 ]
+admin.site.site_header = "Youth Path"
+admin.site.site_title = "Youth Path Admin Portal"
+admin.site.index_title = "Welcome to Youth Path "

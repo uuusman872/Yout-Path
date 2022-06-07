@@ -17,14 +17,17 @@
 
         <div class="inputs">
 
-{#            <input type="submit" value="Preacher" href="">#}
-{#            <input type="submit" value="Common" href="">#}
 
-            <a href="{% url 'register' %}?user-role=Preacher"> Preacher </a>
-            <a href="{% url 'register' %}?user-role=Common"> Common </a>
+
+            <a class="inputs-a" href="{% url 'register' %}?user-role=Preacher"> Preacher </a>
+            <a  class="inputs-a"  href="{% url 'register' %}?user-role=Common"> Common </a>
 
             <div class="checkboxy">
                 <a href="{% url 'login' %}"> Already have an account?</a>
+            </div>
+           
+            <div class="checkboxy">
+                <a href="{% url 'login' %}"> Back?</a>
             </div>
         
         </div>

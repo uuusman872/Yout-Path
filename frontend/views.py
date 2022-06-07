@@ -7,6 +7,7 @@ from projectApi.models import ChannelModel, CommentsModel, Dislike, Like, Subscr
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -348,3 +349,13 @@ def update_password(request):
 
 def register_selection(request):
     return render(request, "accounts/register_selection.html")
+
+def profile(request):
+    
+    return render(request, "profile.html")
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("home")
