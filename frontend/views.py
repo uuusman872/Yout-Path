@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from projectApi import forms
@@ -351,8 +352,11 @@ def register_selection(request):
     return render(request, "accounts/register_selection.html")
 
 def profile(request):
-    
-    return render(request, "profile.html")
+    user = UserModel.objects.get(user=request.user)
+    context = {
+        "user" : user,
+    }
+    return render(request, "profile.html", context)
 
 
 

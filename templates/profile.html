@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %} Profile {% endblock title %}
 {% block main %}
-
+        
 
     <!-- Main Body Starts -->
     <div class="mainBody">
@@ -21,14 +21,15 @@
                     <!-- <div class="subscribe-button"> -->
              
                     <a class="subscribe-button" href="{% url 'update_profile' %}">Edit Profile</a>
-                    <img class='user-pic' src="{% static 'images/YouTube-Logo.png' %}" alt="user profile picture">
-                    <span class='user-name'>Benjamin Parker</span>
+                    <img class='user-pic' src="{{ user.profile_image.url }}" alt="user profile picture">
+                    <span class='user-name'> {{ user.user.first_name }} {{ user.user.last_name }}
+                        </span>
                     <br>
-                    <span class='num-subscribers'>2.8m subscribers</span>
+                    <span class='num-subscribers'> </span>
                     <br><br>
-                    <div class='video-description'>Here it goes a compillation of nature songs to make you relax and
-                        enjoy your free time.</div>
-        
+                    {% if user.is_preacher %}
+                    <div class='video-description'>{{user.specialization}}</div>
+                    {% endif %}
                     <!-- </div> -->
                     <div class="profile-buttons">
 
