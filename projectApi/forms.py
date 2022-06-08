@@ -22,6 +22,12 @@ class CreatePreacherAccountForm(forms.ModelForm):
         model = UserModel
         fields = ["phoneNumber", "specialization", "certification"]
 
+    def __init__(self, *args, **kwargs):
+        super(CreatePreacherAccountForm, self).__init__(*args, **kwargs)
+        self.fields['phoneNumber'].widget.attrs['required'] = 'true'
+        self.fields['specialization'].widget.attrs['required'] = 'true'
+        self.fields['certification'].widget.attrs['required'] = 'true'
+
 
 class CreateChannelForm(forms.ModelForm):
     class Meta:
@@ -33,6 +39,10 @@ class UploadVideoForm(forms.ModelForm):
     class Meta:
         model = VideoModel
         fields = ["videoCategory", "videoFile", "videoThumbnail", "Title", "Description"]
+
+    def __init__(self, *args, **kwargs):
+        super(UploadVideoForm, self).__init__(*args, **kwargs)
+        self.fields['videoThumbnail'].widget.attrs['required'] = 'true'
 
 
 class AddCommentForm(forms.ModelForm):

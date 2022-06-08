@@ -9,8 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth import logout
-
+from django.contrib import messages
 # Create your views here.
+
 
 def login_excluded(redirect_to):
     def _method_wrapper(view_method):
@@ -134,29 +135,33 @@ def DislikeVideo(request, vid):
     return redirect('videoplayer', vid)
 
 
-
 def login(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
-        user = auth.authenticate(username=username, password=password)
-        if user is not None:
-            auth.login(request, user)
-            return redirect('home')
-        else:
+        user = User.objects.filter(username=username)[0]
+        if not user.is_active:
+            messages.error(request, "Please Wait For Admin To Activate Your Account")
             return redirect('login')
-            
+        else:
+            user = auth.authenticate(username=username, password=password)
+            if user is not None:
+                auth.login(request, user)
+                return redirect('home')
+            else:
+                messages.error(request, "Login Failed")
+                return redirect('login')
     return render(request, "accounts/login.html")
 
 
 
 def register(request):
-    user_form = forms.UserForm(request.POST or None)
+    user_form = forms.UserForm(request.POST or None, request.FILES)
     user_role = request.GET.get('user-role')
     if user_role == "Common":
-        form = forms.CreateAccountForm(request.POST or None)
+        form = forms.CreateAccountForm(request.POST or None, request.FILES)
     elif user_role == 'Preacher':
-        form = forms.CreatePreacherAccountForm(request.POST or None)
+        form = forms.CreatePreacherAccountForm(request.POST or None, request.FILES)
     
     if request.method == 'POST':
         print("Got POST requs")
@@ -174,7 +179,8 @@ def register(request):
             account_form = form.save(commit=False)
             account_form.user = user
             account_form.save()
-            return HttpResponse("Account Created")
+            messages.success(request, "Registration Complete")
+            return redirect("login")
 
     context = {
         "AccountForm": form,
@@ -215,7 +221,7 @@ def upload_video(request):
                 channel_name = request.POST["channel"]
                 form.channel = ChannelModel.objects.filter(Q(User=user) & Q(Name=channel_name))[0]
                 form.save()
-                return redirect('videos')
+                return redirect('home')
         return render(request, "uploadVideoContent.html", context={"form":vform, "user_channel": user_channel})
     else:
         return HttpResponse("<h1> Page Not Found </h1>")
@@ -224,8 +230,12 @@ def upload_video(request):
 def userSubscriptionView(request):
     user = UserModel.objects.get(user=request.user)
     subs = Subscription.objects.filter(user=user)
+    channels = ChannelModel.objects.filter(User=user)
+    videos = VideoModel.objects.filter(creator=user)
     context = {
-        "subs": subs
+        "subs": subs,
+        "channels": channels,
+        "videos": videos
     }
     return render(request, "UserSubscription.html", context)
 
