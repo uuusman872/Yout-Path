@@ -1,26 +1,17 @@
 {% load static %}
 {% block main %}
 
+    {% for obj in channel_list %}
 <div class='user-info'>
     <!-- <div class="subscribe-button"> -->
-    
-    <img class='user-pic' src="{% static 'images/YouTube-Logo.png' %}" alt="user profile picture">
-    <span class='user-name'>Benjamin Parker</span>
+    <img class='user-pic' src="{{ obj.channel.Thumbnail.url }}" alt="user profile picture">
+    <span class='user-name'>{{ obj.channel.Name }}</span>
     <br>
-    <span class='num-subscribers'>2.8m subscribers</span>
+    <span class='num-subscribers'>{{ obj.subscription }} subscribers</span>
 
 </div>
 
-<div class='user-info'>
-    <!-- <div class="subscribe-button"> -->
-    
-    <img class='user-pic' src="{% static 'images/YouTube-Logo.png' %}" alt="user profile picture">
-    <span class='user-name'>Benjamin Parker</span>
-    <br>
-    <span class='num-subscribers'>2.8m subscribers</span>
-
-</div>
-
+    {% endfor %}
  
     <!-- Main Body Ends -->
     

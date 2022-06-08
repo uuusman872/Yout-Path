@@ -1,18 +1,19 @@
 {% load static %}
 {% block main %}
 
+    {% for video in videos %}
           <!-- Single Video starts -->
           <div  class="video">
             <div class="video__thumbnail">
-              <img src="https://img.youtube.com/vi/PpXUTUXU7Qc/maxresdefault.jpg" alt="" />
+              <img src="{{ video.videoThumbnail.url }}" alt="" />
             </div>
             <div class="video__details">
               <div  id="#content" class="author">
-                <img src="http://aninex.com/images/srvc/web_de_icon.png" alt="" />
+                <img src="{{ video.creator.profile_image }}" alt="" />
               </div>
               <div class="title">
                 <h3>
-                  Top 5 Programming Languages to Learn in 2021 | Best Programming Languages to Learn
+                  {{ video.Description }}
                 </h3>
                 <a href="">FutureCoders</a>
                 <span>10M Views • 3 Months Ago</span>
@@ -20,7 +21,7 @@
             </div>
           </div>
           <!-- Single Video Ends -->
-
+{% endfor %}
  
     <!-- Main Body Ends -->
     

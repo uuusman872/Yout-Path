@@ -37,11 +37,28 @@ def index(request):
 
 
 def videos(request):
-    return render(request, "videos.html")
+    user = UserModel.objects.get(user=request.user)
+    videos = VideoModel.objects.filter(creator=user)
+    channel = VideoModel.objects.filter()
+    context = {
+        "videos": videos
+    }
+    return render(request, "videos.html", context)
 
 
 def channels(request):
-    return render(request, "channels.html")
+    user = UserModel.objects.get(user=request.user)
+    channels = ChannelModel.objects.filter(User=user)
+    channel_list = []
+    for channel in channels:
+        subscription = Subscription.objects.filter(channel=channel).count()
+        channel_list.append({"channel":channel, "subscription": subscription})
+
+    print("[+] List of channels are ", channel_list)
+    context = {
+        "channel_list": channel_list
+    }
+    return render(request, "channels.html", context)
 
 
 @login_required(login_url='login')
@@ -230,12 +247,8 @@ def upload_video(request):
 def userSubscriptionView(request):
     user = UserModel.objects.get(user=request.user)
     subs = Subscription.objects.filter(user=user)
-    channels = ChannelModel.objects.filter(User=user)
-    videos = VideoModel.objects.filter(creator=user)
     context = {
         "subs": subs,
-        "channels": channels,
-        "videos": videos
     }
     return render(request, "UserSubscription.html", context)
 
