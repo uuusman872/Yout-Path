@@ -11,13 +11,15 @@
     <form id="signup" action="" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         <div class="header">
-        
-            <h3>Upload Video</h3>
-            
-            <p>Fill and boom</p>
-            
-        </div>
-        
+
+            <div>
+                <h3>Upload Video</h3>
+                
+                <p>Fill and boom</p>
+            </div>
+                <a class="home-button" href="{% url 'home' %}">Home</a>
+                
+            </div>
         <div class="sep"></div>
 
         <div class="inputs">

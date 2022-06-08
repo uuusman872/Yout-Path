@@ -9,11 +9,15 @@
 
     <form id="signup" method="POST">
         {% csrf_token %}
-        <div class="header">
         
+        <div class="header">
+
+        <div>
             <h3>Sign Up</h3>
             
             <p>Fill and boom</p>
+        </div>
+            <a class="home-button" href="{% url 'home' %}">Home</a>
             
         </div>
         
@@ -65,7 +69,7 @@
             </div>
             
             <div class="checkboxy">
-                <a href="{% url 'home' %}"> Home?</a>
+                <a href="{% url 'register_selection' %}"> Back?</a>
             </div>
         
         </div>
