@@ -368,5 +368,7 @@ a{
   position: absolute;
   left: 0;
   bottom: 0;
-  margin: 65px;
+  width: 150px;
+  margin: 35px;
+
 }
