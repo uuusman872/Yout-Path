@@ -13,6 +13,12 @@ body {
 
 .material-icons {
   color: #ec7e36;
+  transition: .2s ease-in-out;
+}
+.material-icons:hover {
+ color: white;
+
+
 }
 
 .header {
@@ -27,11 +33,18 @@ body {
 .header__left {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .header__left img {
   width: 100px;
-  margin-left: 15px;
+
+  transition: .3s ease-in-out;
+  opacity: 0.9;
+}
+
+.header__left img:hover{
+  opacity: 1;
 }
 
 .header i {
@@ -40,21 +53,24 @@ body {
 }
 
 .header__search form {
-  border: 1px solid #698eff;
   height: 35px;
   margin: 0;
   padding: 0;
   display: flex;
+  outline: none;
 }
 
 .header__search input {
-  width: 500px;
+  width: 380px;
   padding: 10px;
   margin: 0;
   border-radius: 0;
   border: none;
   height: 100%;
   background: #1a5080;
+  outline: none;
+  color: white;
+
 }
 
 .header__search button {
@@ -64,6 +80,7 @@ body {
   border: none;
   border-radius: 0;
   background: #1a5080;
+
 }
 
 /* Sidebar */
@@ -72,18 +89,22 @@ body {
   display: flex;
   /* overflow: hidden; */
   background-color: rgb(24, 24, 24);
-  
-
+  margin-left: 232px;
 
 }
 
 .sidebar {
-  height: 100%;
   width: 230px;
+
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
   background: rgb(32 32 32);
-  overflow-y: scroll;
-  margin-bottom: -5000px; /* any large number will do */
-  padding-bottom: 3000px; 
+  overflow-x: hidden;
+  transition: 0.5s;
+
 }
 
 .sidebar__categories {
@@ -98,6 +119,7 @@ body {
   display: flex;
   align-items: center;
   padding: 12px 25px;
+  transition: .2s ease-in-out;
 }
 
 .sidebar__category span {
@@ -134,6 +156,7 @@ hr {
   flex-direction: row;
   justify-content: left;
   flex-wrap: wrap;
+
 }
 
 .video {
@@ -151,7 +174,14 @@ hr {
   object-fit: cover;
   height: 100%;
   width: 100%;
+  transition: .2s ease-in-out;
 }
+
+.video__thumbnail img:hover {
+  transform: scale(1.02);
+
+}
+
 
 .author img {
   object-fit: cover;
@@ -222,6 +252,12 @@ h1 {
   .recommended-videos{
     width: auto !important;
   }
+  .user-profile-info{
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+
+
+}
 
 }
 
@@ -236,19 +272,29 @@ h1 {
   .show-sidebar {
     display: inline;
     position: fixed;
-    top: 4.4rem;
-    height: auto;
     z-index: 1;
+  }
+
+  #menu {
+    display: block !important;
+  }
+  .mainBody {
+   
+    margin-left: 0;
+  
   }
 }
 
-
+#menu {
+  display: none;
+  color: white;
+}
 
 /* profile */
 
 
 .container-profile {
-  max-width: 85%;
+  width: 100%;
  
 }
 
@@ -258,15 +304,8 @@ h1 {
 }
 
 .user-profile-info{
-    /* display: flex; */
-    /* max-width: 70%; */
-    /* justify-content: space-evenly; */
     margin: 0 auto;
-    justify-content: center;
-    align-items: center;
-    /* margin: 36px; */
-    /* padding: 87px; */
-    background-color: #698eff;
+    background-color: #265080;
     padding-left: 100px;
     padding-top: 30px;
     padding-right: 100px;
@@ -276,10 +315,22 @@ h1 {
 .profile-buttons button{
   background: none;
   border: none;
-  border-bottom: 1px solid black;
   padding: 5px;
   cursor: pointer;
+  color: #F8AB2F;
+  transition: .3s ease-in-out;
+  border-bottom: 1px solid #F8AB2F;
+
 }
+.profile-buttons button:hover{
+  border-bottom: 1px solid #ffffff;
+  color: white;
+}
+.profile-buttons {
+
+  margin: 10px;
+}
+
 .profile-vidoes{
   margin: 20px;
 }
@@ -305,4 +356,17 @@ a{
   flex-direction: row;
   justify-content: left;
   flex-wrap: wrap;
+}
+
+.profile-name-des{
+  color: #F8AB2E;
+  font-weight: bold;
+}
+
+
+.sidebar-bot-img img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 65px;
 }

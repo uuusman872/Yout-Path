@@ -3,7 +3,7 @@
  <!-- Header Starts -->
  <div class="header">
     <div class="header__left">
-      <i id="menu" class="material-icons">menu</i>
+    
       <a href="{% url 'home' %}">
       <img
         src="{% static 'images/PNG Logo - Youth Path (English Color).png' %}"
@@ -19,8 +19,9 @@
         <button type="submit"><i class="material-icons">search</i></button>
       </form>
     </div>
-
+   
     <div class="header__icons">
+      <i id="menu" class="material-icons">menu</i>
       <!-- <i class="material-icons display-this">search</i> -->
       <a title="Upload Video" href="{% url 'upload-video' %}"><i class="material-icons">videocam</i></a>
 
@@ -34,6 +35,7 @@
       <a title="Profile" href="{% url 'profile' %}"><i class="material-icons display-this">account_circle</i></a>
       <a title="Current User" href="{% url 'profile' %}"><span class="request-user"> {{ request.user }} </span></a>
       {% endif %}
+  
     </div>
   </div>
   <!-- Header Ends -->

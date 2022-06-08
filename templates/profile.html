@@ -11,28 +11,22 @@
         
         <div class="container-profile"> 
 
-            <div class="background">
-                <img src="{% static 'images/Screenshot 2022-04-22 170013.png' %}" alt="">
-            </div>
 
 
             <div class="user-profile-info">
-                <div class='user-info'>
+            
                     <!-- <div class="subscribe-button"> -->
              
                     <a class="subscribe-button" href="{% url 'update_profile' %}">Edit Profile</a>
                     <img class='user-pic' src="{{ user.profile_image.url }}" alt="user profile picture">
-                    <span class='user-name'> {{ user.user.first_name }} {{ user.user.last_name }}
-                        </span>
-                    <br>
-                    <span class='num-subscribers'> </span>
-                    <br><br>
+                    <span class='profile-name-des'> {{ user.user.first_name }} {{ user.user.last_name }} </span>
+           
                     {% if user.is_preacher %}
-                    <div class='video-description'>{{user.specialization}}</div>
+                    <div class='profile-name-des'>{{user.specialization}}</div>
                     {% endif %}
                     <!-- </div> -->
                     <div class="profile-buttons">
-
+                        
                         <button onClick="videos()">Videos</button>
                         <button  onClick="Channels()">Channels</button>
 
@@ -62,24 +56,24 @@
                             } 
                         </script>
 
-                    </div>     
-                        
-                    </div>
+                    </div>  
 
-                </div>
+        
+
+            </div>
 
 
                 <div id="load-vidoes" class="profile-vidoes"> </div>
                 <div id="load-channels" class="profile-channels"> </div>
 
-            </div>
+        </div>
           
 
             
-        </div>
+    </div>
 
      
-    </div>
+
  
     <!-- Main Body Ends -->
     

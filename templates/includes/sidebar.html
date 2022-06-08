@@ -5,7 +5,18 @@
    <div class="sidebar">
 
    <!-- Sidebar Starts -->
+   <div class="header__left temp-logo-sidebar">
 
+    <a href="{% url 'home' %}">
+    <img
+      src="{% static 'images/PNG Logo - Youth Path (English Color).png' %}"
+      alt="logo"
+    />
+    </a>
+  </div>
+
+
+<br>
 
    <div class="header__search sidebar-search">
     <form action="{% url 'search_video' %}" method="POST" >
@@ -16,6 +27,7 @@
 
 
 </div>
+<hr />
 
     <div class="sidebar__categories">
 
@@ -71,12 +83,15 @@
     </div>
     <hr />
    
-    <div class="sidebar__category">
-        <span>Subscriptions</span>
-        
-      </div>
-      <hr>
-
+    <div class="header__left sidebar-bot-img" >
+  
+      <a href="{% url 'home' %}">
+      <img
+        src="{% static 'images/PNG Logo - Youth Path (English Color).png' %}"
+        alt="logo"
+      />
+      </a>
+    </div>
      
   </div>
   <!-- Sidebar Ends -->
