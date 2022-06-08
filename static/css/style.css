@@ -288,6 +288,7 @@ h1 {
 #menu {
   display: none;
   color: white;
+  z-index: 2;
 }
 
 /* profile */
