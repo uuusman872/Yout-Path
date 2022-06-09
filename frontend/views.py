@@ -170,7 +170,7 @@ def login(request):
                     messages.error(request, "Credentials not found!")
                     return redirect('login')
         else:
-            messages.error(request, "Account Does Not Exist's")
+            messages.error(request, "Account Does Not Exist")
     return render(request, "accounts/login.html")
 
 
@@ -243,7 +243,8 @@ def upload_video(request):
                 return redirect('home')
         return render(request, "uploadVideoContent.html", context={"form":vform, "user_channel": user_channel})
     else:
-        return HttpResponse("<h1> Page Not Found </h1>")
+        messages.error(request, "No Channel Found!")
+        return redirect("home")
 
 @login_required(login_url='login')
 def userSubscriptionView(request):

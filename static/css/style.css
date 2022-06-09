@@ -373,3 +373,10 @@ a{
   margin: 35px;
 
 }
+
+.swal-modal{
+background-color: rgb(32 32 32);
+}
+.swal-text{
+color: white
+}
