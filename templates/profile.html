@@ -36,7 +36,10 @@
                                 url: "videos",
                                 type: 'GET',
                                 success: function (data) {
+                                    
                                     $('#load-vidoes').load( "videos");
+                                    $( "#load-vidoes" ).show();
+                                    $( "#load-channels" ).hide();
                                 }
                                 });
                             } 
@@ -44,14 +47,26 @@
 
                         <script>
                             function Channels(){
-                                        $.ajax({
+
+                                $.ajax({
+
                                 url: "channels" + "#content",
                                 type: 'GET',
                                 success: function (data) {
                                     $('#load-channels').load( "channels"  + '#content');
-                                }
+                                    $( "#load-channels" ).show();
+                                    $( "#load-vidoes" ).hide();
+                                },
+                                
+
                                 });
                             } 
+                        
+
+                        </script>
+
+                        <script>
+                            
                         </script>
 
                     </div>  

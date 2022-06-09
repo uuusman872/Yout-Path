@@ -1,29 +1,37 @@
 {% load static %}
 {% block main %}
 
-    {% for video in videos %}
-          <!-- Single Video starts -->
-          <div  class="video">
-            <div class="video__thumbnail">
-              <img src="{{ video.videoThumbnail.url }}" alt="" />
-            </div>
-            <div class="video__details">
-              <div  id="#content" class="author">
-                <img src="{{ video.creator.profile_image }}" alt="" />
-              </div>
-              <div class="title">
-                <h3>
-                  {{ video.Description }}
-                </h3>
-                <a href="">FutureCoders</a>
-                <span>10M Views • 3 Months Ago</span>
-              </div>
-            </div>
-          </div>
-          <!-- Single Video Ends -->
-{% endfor %}
+
  
     <!-- Main Body Ends -->
     
-    
+    <div class="videos__container">
+      {% for vid in videos %}
+      <a href="{% url 'videoplayer' vid.id %}"> 
+      <!-- Single Video starts -->
+      <div class="video">
+        <div class="video__thumbnail">
+          <img src="{{vid.videoThumbnail.url}}" alt="" />
+        </div>
+        <div class="video__details">
+          <div class="author">
+            <img src="{{vid.channel.Thumbnail.url}}" alt="" />
+          </div>
+          <div class="title">
+            <h3>
+                {{vid.Title}}
+            </h3>
+            <a href="">{{vid.channel.Name}}</a>
+            <span> {{ vid.views }} Views • {{vid.uploaded_date}} </span>
+          </div>
+        </div>
+      </div>
+      <!-- Single Video Ends -->
+    </a>
+      {% endfor %}
+
+
+    </div>
+
+
 {% endblock main %}
