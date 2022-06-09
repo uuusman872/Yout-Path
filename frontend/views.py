@@ -192,10 +192,13 @@ def register(request):
             user.username = user_form.cleaned_data['username']
             password = user_form.cleaned_data["password"]
             user.set_password(password)
-            if user_role == 'preacher':
+            if user_role == 'Preacher':
                 user.is_active = False
+     
             user.save()
             account_form = form.save(commit=False)
+            if user_role == 'Preacher':
+                account_form.is_preacher = True
             account_form.user = user
             account_form.save()
             messages.success(request, "Registration Complete")
