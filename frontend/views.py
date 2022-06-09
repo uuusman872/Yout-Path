@@ -26,6 +26,7 @@ def login_excluded(redirect_to):
 from django.db.models import Count
 def index(request):
     videos = VideoModel.objects.all().order_by("-uploaded_date")
+    
     context_list = []
     for vid in videos:
         views = View.objects.filter(video=vid).count()
@@ -165,12 +166,14 @@ def login(request):
                 user = auth.authenticate(username=username, password=password)
                 if user is not None:
                     auth.login(request, user)
+                    request.session['is_preacher'] = UserModel.objects.get(user=user).is_preacher
                     return redirect('home')
                 else:
                     messages.error(request, "Credentials not found!")
                     return redirect('login')
         else:
             messages.error(request, "Account Does Not Exist")
+        
     return render(request, "accounts/login.html")
 
 
