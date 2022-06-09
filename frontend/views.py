@@ -156,20 +156,22 @@ def login(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
-        user = User.objects.filter(username=username)[0]
-        if not user.is_active:
-            messages.error(request, "Please Wait For Admin To Activate Your Account")
-            return redirect('login')
-        else:
-            user = auth.authenticate(username=username, password=password)
-            if user is not None:
-                auth.login(request, user)
-                return redirect('home')
-            else:
-                messages.error(request, "Login Failed")
+        user = User.objects.filter(username=username)
+        if len(user) > 0:
+            if not user[0].is_active:
+                messages.error(request, "Wait For Admin Approval!")
                 return redirect('login')
+            else:
+                user = auth.authenticate(username=username, password=password)
+                if user is not None:
+                    auth.login(request, user)
+                    return redirect('home')
+                else:
+                    messages.error(request, "Credentials not found!")
+                    return redirect('login')
+        else:
+            messages.error(request, "Account Does Not Exist's")
     return render(request, "accounts/login.html")
-
 
 
 def register(request):
