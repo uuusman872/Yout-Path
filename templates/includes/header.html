@@ -23,14 +23,23 @@
     <div class="header__icons">
       <i id="menu" class="material-icons">menu</i>
       <!-- <i class="material-icons display-this">search</i> -->
-      <a title="Upload Video" href="{% url 'upload-video' %}"><i class="material-icons">videocam</i></a>
-        {{ request.user.is_active }}
-      <a title="Create Channel" href="{% url 'createChannel' %}"> <span class="material-icons material-symbols-outlined">draw</span></a>
+
+
+     
+
+        {% if request.session.is_preacher%}
+        <a title="Upload Video" href="{% url 'upload-video' %}"><i class="material-icons">videocam</i></a>
+        <a title="Create Channel" href="{% url 'createChannel' %}"> <span class="material-icons material-symbols-outlined">draw</span></a>
+        {% endif %}
+
+
+
       {% if user.is_authenticated %}
       <a title="Logout"  href="{% url 'logout' %}"><span class="material-icons material-symbols-outlined">logout</span></a>
       {% else %}
       <a title="Login/Register"  href="{% url 'login' %}"><span class="material-icons material-symbols-outlined">login </span></a>
       {% endif %}
+
       {% if user.is_authenticated %}
       <a title="Profile" href="{% url 'profile' %}"><i class="material-icons display-this">account_circle</i></a>
       <a title="Current User" href="{% url 'profile' %}"><span class="request-user"> {{ request.user }} </span></a>

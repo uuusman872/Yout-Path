@@ -26,6 +26,7 @@ def login_excluded(redirect_to):
 from django.db.models import Count
 def index(request):
     videos = VideoModel.objects.all().order_by("-uploaded_date")
+    
     context_list = []
     for vid in videos:
         views = View.objects.filter(video=vid).count()
@@ -159,7 +160,7 @@ def login(request):
         user = User.objects.filter(username=username)
         if len(user) > 0:
             if not user[0].is_active:
-                messages.error(request, "Please Wait For Admin To Activate Your Account")
+                messages.error(request, "Wait For Admin Approval!")
                 return redirect('login')
             else:
                 user = auth.authenticate(username=username, password=password)
@@ -168,12 +169,12 @@ def login(request):
                     request.session['is_preacher'] = UserModel.objects.get(user=user).is_preacher
                     return redirect('home')
                 else:
-                    messages.error(request, "Login Failed")
+                    messages.error(request, "Credentials not found!")
                     return redirect('login')
         else:
-            messages.error(request, "Account Does Not Exist's")
+            messages.error(request, "Account Does Not Exist")
+        
     return render(request, "accounts/login.html")
-
 
 
 def register(request):
@@ -196,12 +197,11 @@ def register(request):
             user.set_password(password)
             if user_role == 'Preacher':
                 user.is_active = False
+     
             user.save()
             account_form = form.save(commit=False)
-
-            if user_role == "Preacher":
+            if user_role == 'Preacher':
                 account_form.is_preacher = True
-
             account_form.user = user
             account_form.save()
             messages.success(request, "Registration Complete")
@@ -249,7 +249,8 @@ def upload_video(request):
                 return redirect('home')
         return render(request, "uploadVideoContent.html", context={"form":vform, "user_channel": user_channel})
     else:
-        return HttpResponse("<h1> Page Not Found </h1>")
+        messages.error(request, "No Channel Found!")
+        return redirect("home")
 
 @login_required(login_url='login')
 def userSubscriptionView(request):
@@ -388,6 +389,8 @@ def profile(request):
         "user" : user,
     }
     return render(request, "profile.html", context)
+
+
 
 def logout_view(request):
     logout(request)

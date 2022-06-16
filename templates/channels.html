@@ -1,19 +1,18 @@
 {% load static %}
 {% block main %}
-
-    {% for obj in channel_list %}
-<div class='user-info'>
-    <!-- <div class="subscribe-button"> -->
-    <img class='user-pic' src="{{ obj.channel.Thumbnail.url }}" alt="user profile picture">
-    <span class='user-name'>{{ obj.channel.Name }}</span>
-    <br>
-    <span class='num-subscribers'>{{ obj.subscription }} subscribers</span>
-
-</div>
-
-    {% endfor %}
  
     <!-- Main Body Ends -->
-    
+    <div class='user-info subs-list-parent-grid'>
+        <!-- <div class="subscribe-button"> -->
+        {% for s in channel_list %}
+        <div class="sub-list-grid"> 
+            <img class='user-pic' src="{{s.channel.Thumbnail.url}}" alt="user profile picture">
+            <span class='user-name'>{{s.channel.Name}}</span>
+            <br>
+            <span class='num-subscribers'>{{s.subscription}} Subscriber</span>
+            
+        </div>
+        {% endfor %}
+    </div>
     
 {% endblock main %}
