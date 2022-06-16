@@ -27,7 +27,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -72,6 +72,16 @@
       <workItem from="1654676835745" duration="103000" />
       <workItem from="1654699537061" duration="22000" />
       <workItem from="1654703757762" duration="2643000" />
+      <workItem from="1654754628703" duration="10000" />
+      <workItem from="1654761030207" duration="359000" />
+      <workItem from="1654769950381" duration="1000" />
+      <workItem from="1654771669305" duration="1478000" />
+      <workItem from="1654773736279" duration="21000" />
+      <workItem from="1654774133920" duration="2133000" />
+      <workItem from="1654846824988" duration="7000" />
+      <workItem from="1655131273733" duration="556000" />
+      <workItem from="1655226633016" duration="1580000" />
+      <workItem from="1655308067678" duration="607000" />
     </task>
     <servers />
   </component>

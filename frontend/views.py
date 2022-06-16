@@ -156,18 +156,22 @@ def login(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
-        user = User.objects.filter(username=username)[0]
-        if not user.is_active:
-            messages.error(request, "Please Wait For Admin To Activate Your Account")
-            return redirect('login')
-        else:
-            user = auth.authenticate(username=username, password=password)
-            if user is not None:
-                auth.login(request, user)
-                return redirect('home')
-            else:
-                messages.error(request, "Login Failed")
+        user = User.objects.filter(username=username)
+        if len(user) > 0:
+            if not user[0].is_active:
+                messages.error(request, "Please Wait For Admin To Activate Your Account")
                 return redirect('login')
+            else:
+                user = auth.authenticate(username=username, password=password)
+                if user is not None:
+                    auth.login(request, user)
+                    request.session['is_preacher'] = UserModel.objects.get(user=user).is_preacher
+                    return redirect('home')
+                else:
+                    messages.error(request, "Login Failed")
+                    return redirect('login')
+        else:
+            messages.error(request, "Account Does Not Exist's")
     return render(request, "accounts/login.html")
 
 
@@ -190,10 +194,14 @@ def register(request):
             user.username = user_form.cleaned_data['username']
             password = user_form.cleaned_data["password"]
             user.set_password(password)
-            if user_role == 'preacher':
+            if user_role == 'Preacher':
                 user.is_active = False
             user.save()
             account_form = form.save(commit=False)
+
+            if user_role == "Preacher":
+                account_form.is_preacher = True
+
             account_form.user = user
             account_form.save()
             messages.success(request, "Registration Complete")
@@ -380,8 +388,6 @@ def profile(request):
         "user" : user,
     }
     return render(request, "profile.html", context)
-
-
 
 def logout_view(request):
     logout(request)

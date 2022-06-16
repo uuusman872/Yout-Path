@@ -21,11 +21,11 @@
           <a href="{% url 'videoplayer' objlist.object.id %}">
           <div class="video">
             <div class="video__thumbnail">
-              <img src="{{objlist.object.videoThumbnail.url}}" alt="" />
+              <img src="{{objlist.object.videoThumbnail.url}}" alt=""/>
             </div>
             <div class="video__details">
               <div class="author">
-                <img src="{{objlist.object.channel.Thumbnail.url}}" alt="" />
+                <img src="{{ objlist.object.channel.Thumbnail.url }}" alt="" />
               </div>
               <div class="title">
                 <h3>
