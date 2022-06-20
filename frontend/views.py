@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from projectApi import forms
 from django.contrib.auth.models import User
 from django.contrib import auth
-from projectApi.models import ChannelModel, CommentsModel, Dislike, Like, Subscription, UserModel, VideoModel, View
+from projectApi.models import ChannelModel, CommentsModel, Dislike, Like, Subscription, UserModel, VideoModel, View, UserWarning
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.files.storage import FileSystemStorage
@@ -26,13 +26,24 @@ def login_excluded(redirect_to):
 from django.db.models import Count
 def index(request):
     videos = VideoModel.objects.all().order_by("-uploaded_date")
-    
     context_list = []
+    if request.user.is_authenticated and UserModel.objects.filter(user=request.user).exists():
+        user = UserModel.objects.get(user=request.user)
+        if UserWarning.objects.filter(user=user).exists():
+            warnings = UserWarning.objects.filter(user=user).order_by('-created_date')[0]
+            print("[+] Warning is ", warnings.is_seen)
+            if not warnings.is_seen:
+                messages.error(request, warnings.message)
+                warnings.is_seen = True
+                warnings.save()
+    else:
+        warnings = ""
     for vid in videos:
         views = View.objects.filter(video=vid).count()
         context_list.append({"object": vid, "views": views})
     context = {
-        "context_list": context_list
+        "context_list": context_list,
+        "warnings": warnings
     }
     return render(request, "index.html", context=context)
 
@@ -140,6 +151,7 @@ def LikeVideo(request, vid):
     return redirect('videoplayer', vid)
 
 
+
 @login_required(login_url='login')
 def DislikeVideo(request, vid):
     user = UserModel.objects.get(user=request.user)
@@ -221,6 +233,7 @@ def register(request):
 def uploadVideos(request):
     return render(request, "uploadVideoContent.html")
 
+
 @login_required(login_url='login')
 def createChannel(request):
     channelForm = forms.CreateChannelForm(request.POST or None, request.FILES)
@@ -232,6 +245,7 @@ def createChannel(request):
             cform.save()
             return redirect("home")
     return render(request, "CreateChannel.html", context={"channelForm": channelForm})
+
 
 @login_required(login_url='login')
 def upload_video(request):
@@ -252,6 +266,7 @@ def upload_video(request):
         messages.error(request, "No Channel Found!")
         return redirect("home")
 
+
 @login_required(login_url='login')
 def userSubscriptionView(request):
     user = UserModel.objects.get(user=request.user)
@@ -261,6 +276,7 @@ def userSubscriptionView(request):
     }
     return render(request, "UserSubscription.html", context)
 
+
 @login_required(login_url='login')
 def likedVideoViewList(request):
     user = UserModel.objects.get(user=request.user)
@@ -269,6 +285,7 @@ def likedVideoViewList(request):
         "like_videos": like_videos
     }
     return render(request, "likeVideosList.html", context)
+
 
 @login_required(login_url='login')
 def YourVideoListView(request):
@@ -281,6 +298,7 @@ def YourVideoListView(request):
         "user_videos": user_videos
     }
     return render(request, "userVideoList.html", context)
+
 
 
 @login_required(login_url='login')
@@ -297,13 +315,14 @@ def addComment(request):
     return redirect('videoplayer', id)
 
 
-
 def searchVideo(request):
     if request.method == "POST":
         text = request.POST["search"]
         videos_list = VideoModel.objects.filter(Q(Title__icontains=text) | Q(Description__icontains=text) | Q(channel__Name__icontains=text))
+        Channel = ChannelModel.objects.filter(Name=text)
         context = {
-            "video_list": videos_list
+            "video_list": videos_list,
+            "Channel": Channel
         }
         return render(request, 'searchResults.html', context)
     return redirect('badRequest.html')
@@ -340,18 +359,16 @@ def unsubscribeChannel(request):
     else:
         return HttpResponse("Page Not Found")
 
+
 @login_required(login_url='login')
 def update_profile(request):
     if request.method == "POST":
         user = UserModel.objects.get(user=request.user)
-
         user_obj = user.user
         user_obj.first_name = request.POST['first_name']
         user_obj.last_name = request.POST['last_name']
         user_obj.save()
-
         user.phoneNumber = request.POST['phoneNumber']
-
         profileImage = request.FILES['profileImage']
         if profileImage is not None:
             fs = FileSystemStorage()
@@ -360,7 +377,12 @@ def update_profile(request):
             user.profile_image.name = profileImage.name
         user.save()
         return redirect('home')
-    return render(request, 'update_profile.html')
+    userModel = UserModel.objects.get(user=request.user)
+    context = {
+        "userModel": userModel
+    }
+    return render(request, 'update_profile.html', context)
+
 
 @login_required(login_url='login')
 def update_password(request):
@@ -380,8 +402,10 @@ def update_password(request):
             return HttpResponse("User Not Found")
     return render(request, "change_password.html")
 
+
 def register_selection(request):
     return render(request, "accounts/register_selection.html")
+
 
 def profile(request):
     user = UserModel.objects.get(user=request.user)

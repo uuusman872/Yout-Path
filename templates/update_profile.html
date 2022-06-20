@@ -24,18 +24,15 @@
 
         <div class="inputs">
             <label> First Name </label>
-            <input required type="text" placeholder="First Name" name="first_name" autofocus />
+            <input required type="text" placeholder="{{ userModel.user.first_name }}" name="first_name" autofocus />
             <label> Last Name </label>
-            <input required type="text" placeholder="Last Name" name="last_name"/>
+            <input required type="text" placeholder="{{ userModel.user.last_name }}" name="last_name"/>
             <label> Phone# </label>
-            <input required type="number" placeholder="Phone number" name="phoneNumber" autofocus />
+            <input required type="number" placeholder="{{ userModel.phoneNumber }}" name="phoneNumber" autofocus />
             <label> Profile Image </label>
             <input required type="file" placeholder="Profile Image" name="profileImage"/>
-            
-    
-            <input type="submit" value="Update Profile">
 
-            
+            <input type="submit" value="Update Profile">
             <div class="checkboxy">
                 <a href="{% url 'profile' %}"> Back?</a>
             </div>

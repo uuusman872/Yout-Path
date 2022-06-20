@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from django.contrib.auth.models import User
 # Register your models here.
 
 
@@ -12,3 +13,15 @@ admin.site.register(Dislike)
 admin.site.register(Like)
 admin.site.register(View)
 admin.site.register(Subscription)
+
+
+class UserWarningsForAdmin(admin.ModelAdmin):
+    exclude = ['is_seen']
+
+
+class GroupRemoveForAdmin(admin.ModelAdmin):
+    exclude = ['_groups']
+
+
+admin.site.register(UserWarning, UserWarningsForAdmin)
+admin.site.register(User, GroupRemoveForAdmin)

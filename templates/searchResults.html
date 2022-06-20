@@ -15,8 +15,12 @@
       
       <div id="text" class="videos">
         <h1>Search Results</h1>
-     
-       
+
+      {% for c in Channel %}
+          {{ c.Name }}
+          {{ c.Thumbnail }}
+      {% endfor %}
+
         <div class="videos__container">
           <!-- Single Video starts -->
           {% if video_list %}

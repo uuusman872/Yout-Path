@@ -23,6 +23,16 @@ CHANNEL_TYPE = [
 ]
 
 
+class UserWarning(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    message = models.TextField(max_length=500, null=True, blank=True)
+    is_seen = models.BooleanField()
+    created_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.user.user.first_name) + str(self.user.user.last_name)
+
+
 class ChannelModel(models.Model):
     User = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     Name = models.CharField(max_length=30)
