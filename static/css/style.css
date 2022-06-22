@@ -311,7 +311,12 @@ h1 {
     padding-top: 30px;
     padding-right: 100px;
     padding-bottom: 30px;
+    min-height: 138px;
 
+}
+.user-pic-profile{
+  height: 80px !important;
+    width: 80px !important;
 }
 .profile-buttons button{
   background: none;
@@ -359,10 +364,6 @@ a{
   flex-wrap: wrap;
 }
 
-.profile-name-des{
-  color: #F8AB2E;
-  font-weight: bold;
-}
 
 
 .sidebar-bot-img img {
@@ -379,4 +380,35 @@ background-color: rgb(32 32 32);
 }
 .swal-text{
 color: white
+}
+
+.profile-name-des{
+  color: #F8AB2E;;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.profile-name-des-1{
+  font-weight: normal;
+  color: #F8AB2E;;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+.profile-name-des-1:hover{
+  color: #ffffff;
+
+}
+.profile-name-des:hover{
+
+  color: #ffffff;
+}
+h5{
+  color: white
+}
+
+.middle-profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

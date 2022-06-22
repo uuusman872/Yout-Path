@@ -2,7 +2,17 @@
 {% load static %}
 {% block title %} Profile {% endblock title %}
 {% block main %}
-        
+
+{% if not user.is_preacher %}
+    <style>
+        .middle-profile {
+
+            margin: 30px;
+            align-items: baseline;
+        }
+    </style>
+{% endif %}
+
 
     <!-- Main Body Starts -->
     <div class="mainBody">
@@ -16,20 +26,21 @@
             <div class="user-profile-info">
             
                     <!-- <div class="subscribe-button"> -->
-             
+                
                     <a class="subscribe-button" href="{% url 'update_profile' %}">Edit Profile</a>
-                    <img class='user-pic' src="{{ user.profile_image.url }}" alt="user profile picture">
+                    <img class='user-pic-profile user-pic' src="{{ user.profile_image.url }}" alt="user profile picture">
+                <div class="middle-profile">
                     <span class='profile-name-des'> {{ user.user.first_name }} {{ user.user.last_name }} </span>
            
                     {% if user.is_preacher %}
-                    <div class='profile-name-des'>{{user.specialization}}</div>
+                    <div class='profile-name-des-1'>{{user.specialization}}</div>
                     {% endif %}
                     <!-- </div> -->
                     <div class="profile-buttons">
-                        
+                        {% if user.is_preacher %}
                         <button onClick="videos()">Videos</button>
                         <button  onClick="Channels()">Channels</button>
-
+                        {% endif %}
                         <script>
                             function videos(){
                                         $.ajax({
@@ -71,7 +82,7 @@
 
                     </div>  
 
-        
+                </div>      
 
             </div>
 

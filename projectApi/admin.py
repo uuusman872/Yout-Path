@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 # Register your models here.
 
 
@@ -24,4 +24,6 @@ class GroupRemoveForAdmin(admin.ModelAdmin):
 
 
 admin.site.register(UserWarning, UserWarningsForAdmin)
+admin.site.unregister(User)
+admin.site.unregister(Group)
 admin.site.register(User, GroupRemoveForAdmin)

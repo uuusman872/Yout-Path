@@ -15,12 +15,41 @@
       
       <div id="text" class="videos">
         <h1>Search Results</h1>
+        <hr>
+        <br>
+        <h5>Channels</h5>
 
-      {% for c in Channel %}
-          {{ c.Name }}
-          {{ c.Thumbnail }}
-      {% endfor %}
-
+      <div class='user-info subs-list-parent-grid'>
+        <!-- <div class="subscribe-button"> -->
+        {% for c in Channel %}
+        <div class="sub-list-grid"> 
+            <img class='user-pic' src="{{c.Thumbnail.url}}" alt="user profile picture">
+            <span class='user-name'>{{c.Name}}</span>
+            <br>
+            <span class='num-subscribers'>{{Channel.count }} Subscriber</span>
+            {% if c.is_subscribed %}
+                    <form action="{% url 'unsubscribe-channel' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="v_id" id="" value="">
+                        <input type="hidden" name="c_id" id="" value="{{s.channel.id}}">
+                        <input class="subscribe-button" value="UNSUBSCRIBE" type="submit">
+                    </form>
+                {% else %}
+                    <form action="{% url 'subscribe-channel' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="v_id" id="" value="">
+                        <input type="hidden" name="c_id" id="" value="{{s.channel.id}}">
+                        <input class="subscribe-button" value="SUBSCRIBE" type="submit">
+                    </form>
+                {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+      <hr>
+      <br>
+      <h5>Videos</h5>
+      <br>
+    
         <div class="videos__container">
           <!-- Single Video starts -->
           {% if video_list %}
@@ -38,7 +67,7 @@
                 <h3>
                     {{vid.Title}} 
                 </h3>
-                <a href="">  {{vid.channel.Name}}</a>
+                <a href="#">  {{vid.channel.Name}}</a>
                 <span>  Views • {{vid.uploaded_date }} </span>
               </div>
             </div>

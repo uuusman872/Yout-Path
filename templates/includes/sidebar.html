@@ -63,12 +63,14 @@
         <i class="material-icons">history</i>
         <span>History</span>
       </div> -->
+      {% if request.session.is_preacher%}
       <a href="{% url 'your_video_list_view' %}">
       <div class="sidebar__category">
         <i class="material-icons">play_arrow</i>
         <span>Your Videos</span>
       </div>
       </a>
+      {% endif %}
       <!-- <div class="sidebar__category">
         <i class="material-icons">watch_later</i>
         <span>Watch Later</span>

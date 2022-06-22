@@ -196,10 +196,12 @@ nav {
 
 .circle-icon {
   border-radius: 50%;
-  max-width: 51px;
-  max-height: 50px;
-  padding-right: 10px;
+  width: 40px;
+  height: 40px;
+
   vertical-align: middle;
+
+  margin-right: 15px;
 }
 
 .comment-features {
@@ -212,8 +214,12 @@ nav {
 }
 
 .comment-description {
-  padding-left: 65px;
-  color: #f8ab2f;
+  padding-left: 60px;
+  color: #f8ab2ede;
+  font-size: 14px;
+}
+.gray-color-1{
+  color: gray;
 }
 
 .like-and-dislike-section-comments {
