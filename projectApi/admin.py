@@ -12,6 +12,7 @@ class UserModelInfo(admin.ModelAdmin):
     def email(self, obj):
         return obj.user.email
 
+
 admin.site.register(UserModel, UserModelInfo)
 admin.site.register(VideoModel)
 admin.site.register(CommentsModel)
