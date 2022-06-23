@@ -26,7 +26,7 @@ CHANNEL_TYPE = [
 class UserWarning(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     message = models.TextField(max_length=500, null=True, blank=True)
-    is_seen = models.BooleanField()
+    is_seen = models.BooleanField(default=False, blank=True, null=True)
     created_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
