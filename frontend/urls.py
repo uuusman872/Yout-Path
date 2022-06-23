@@ -25,7 +25,8 @@ urlpatterns = [
     path("subscribe-channel", views.subscribeChannel, name="subscribe-channel"),
     path("unsubscribe-channel", views.unsubscribeChannel, name="unsubscribe-channel"),
     path("register_selection", views.register_selection, name="register_selection"),
-    path("logout", views.logout_view, name="logout")
+    path("logout", views.logout_view, name="logout"),
+    path("channels/<int:channel_id>", views.channels, name="channels")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

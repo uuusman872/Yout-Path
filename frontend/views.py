@@ -436,3 +436,13 @@ def profile(request):
 def logout_view(request):
     logout(request)
     return redirect("home")
+
+
+def channels(request, channel_id):
+    channel = ChannelModel.objects.get(id=channel_id)
+    videos = VideoModel.objects.filter(channel_id=channel.id)
+    context = {
+        "channel": channel,
+        "videos": videos
+    }
+    return render(request, "channel_view.html", context)

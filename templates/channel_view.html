@@ -1,0 +1,23 @@
+{% load static %}
+{% block main %}
+
+{% if channel.banner %}
+    banner image <br>
+{{ channel.banner.url }}
+    <br>
+{% endif %}
+
+{% if channel.Thumbnail %}
+    Thumbnail Image <br> {{ channel.Thumbnail.url }}
+{% endif %}
+
+{{ channel.Name }}
+{{ Channel.about }}
+
+    {% for vid in videos %}
+        {{ vid.Title }}
+        <br>
+    {% endfor %}
+
+
+{% endblock main %}
