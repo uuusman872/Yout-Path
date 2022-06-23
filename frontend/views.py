@@ -23,10 +23,11 @@ def login_excluded(redirect_to):
     return _method_wrapper
 
 
-from django.db.models import Count
+
 def index(request):
     videos = VideoModel.objects.all().order_by("-uploaded_date")
     context_list = []
+    warnings = ""
     if request.user.is_authenticated and UserModel.objects.filter(user=request.user).exists():
         user = UserModel.objects.get(user=request.user)
         if UserWarning.objects.filter(user=user).exists():
@@ -214,6 +215,9 @@ def register(request):
             account_form = form.save(commit=False)
             if user_role == 'Preacher':
                 account_form.is_preacher = True
+                account_form.user_type = "Preacher"
+            else:
+                account_form.user_type = "Common User"
             account_form.user = user
             account_form.save()
             messages.success(request, "Registration Complete")
@@ -299,8 +303,6 @@ def YourVideoListView(request):
     }
     return render(request, "userVideoList.html", context)
 
-
-
 @login_required(login_url='login')
 def addComment(request):
     form = forms.AddCommentForm(request.POST or None)
@@ -319,10 +321,20 @@ def searchVideo(request):
     if request.method == "POST":
         text = request.POST["search"]
         videos_list = VideoModel.objects.filter(Q(Title__icontains=text) | Q(Description__icontains=text) | Q(channel__Name__icontains=text))
-        Channel = ChannelModel.objects.filter(Name=text)
+        Channel = ChannelModel.objects.filter(Name__icontains=text)
+        subs = False
+        if request.user.is_authenticated:
+            if UserModel.objects.filter(user=request.user).exists():
+                user = UserModel.objects.get(user=request.user)
+            else:
+                user = "None"
+            if Subscription.objects.filter(channel__Name__icontains=text, user=user).exists():
+                subs = Subscription.objects.filter(channel__Name__icontains=text, user=user)[0].is_subscribed
+
         context = {
             "video_list": videos_list,
-            "Channel": Channel
+            "Channel": Channel,
+            "is_subscribed": subs
         }
         return render(request, 'searchResults.html', context)
     return redirect('badRequest.html')
@@ -332,11 +344,16 @@ def subscribeChannel(request):
     if request.method == "POST":
         c_id = request.POST['c_id']
         v_id = request.POST['v_id']
+        print("[+] C-id ", c_id)
+        print("[+] v_id ", v_id)
         user = UserModel.objects.get(user=request.user)
         channel = ChannelModel.objects.get(id=c_id)
         if not Subscription.objects.filter(Q(channel=channel) & Q(user=user)).exists():
             Subscription.objects.create(user=user, channel=channel, is_subscribed=True)
-        return redirect('videoplayer', v_id)
+        if v_id != "":
+            return redirect('videoplayer', v_id)
+        else:
+            return redirect('subscription-list')
     else:
         return HttpResponse("Page Not Found")
 

@@ -27,18 +27,18 @@
             <span class='user-name'>{{c.Name}}</span>
             <br>
             <span class='num-subscribers'>{{Channel.count }} Subscriber</span>
-            {% if c.is_subscribed %}
+            {% if is_subscribed %}
                     <form action="{% url 'unsubscribe-channel' %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="v_id" id="" value="">
-                        <input type="hidden" name="c_id" id="" value="{{s.channel.id}}">
+                        <input type="hidden" name="c_id" id="" value="{{c.id}}">
                         <input class="subscribe-button" value="UNSUBSCRIBE" type="submit">
                     </form>
                 {% else %}
                     <form action="{% url 'subscribe-channel' %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="v_id" id="" value="">
-                        <input type="hidden" name="c_id" id="" value="{{s.channel.id}}">
+                        <input type="hidden" name="c_id" id="" value="{{c.id}}">
                         <input class="subscribe-button" value="SUBSCRIBE" type="submit">
                     </form>
                 {% endif %}

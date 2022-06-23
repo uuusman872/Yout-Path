@@ -12,6 +12,7 @@ class UserModel(models.Model):
     specialization = models.TextField(null=True, blank=True)
     certification = models.FileField(upload_to="Certification", null=True, blank=True)
     is_preacher = models.BooleanField(default=False)
+    user_type = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.user)
@@ -26,7 +27,7 @@ CHANNEL_TYPE = [
 class UserWarning(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     message = models.TextField(max_length=500, null=True, blank=True)
-    is_seen = models.BooleanField()
+    is_seen = models.BooleanField(default=False, null=True, blank=True)
     created_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
