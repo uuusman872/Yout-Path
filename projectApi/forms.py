@@ -2,10 +2,11 @@ from cgitb import text
 from django import forms
 from django.contrib.auth.models import User
 from projectApi.models import ChannelModel, CommentsModel, UserModel, VideoModel
+from django.contrib.auth.password_validation import validate_password
 
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput, validators=[validate_password])
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'username', 'password']

@@ -46,7 +46,7 @@
                
 
                 <img class='user-pic' src="{{channel_name.Thumbnail.url}}" alt="user profile picture">
-                <span class='user-name'>{{channel_name.Name}}</span>    
+                <a href="{% url 'channels' channel_name.id %}"> <span class='user-name'>{{channel_name.Name}}</span>   </a> 
                 <br>
                 <span class='num-subscribers'>{{subs}} subscribers</span>
                 <div class='video-description'>{{channel_name.about}}</div>
@@ -100,7 +100,8 @@
         <div class="recommended-video-info">
             <img class='recommended-video-thumbnail' src='{{all_vid.object.videoThumbnail.url}}' alt="a recommended video thumbnail ">
             <span class='recommended-video-title'>{{all_vid.object.Title}}</span><br>
-            <span class='recommended-video-channel'>{{all_vid.object.channel.Name}}</span><br>
+            <a href="{% url 'channels' all_vid.object.channel.id %}"> <span class='recommended-video-channel'>{{all_vid.object.channel.Name}}</span> </a>
+            <br>
             <span class='recommended-video-views'>{{all_vid.views}} Views </span>
 
         </div>

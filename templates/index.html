@@ -31,7 +31,7 @@
                 <h3>
                   {{objlist.object.Title}}
                 </h3>
-                <a href="">{{objlist.object.channel.Name}}</a>
+                <a href="{% url 'channels' objlist.object.channel.id %}">{{objlist.object.channel.Name}}</a>
                 <span> {{ objlist.views }} Views • {{objlist.object.uploaded_date}} </span>
               </div>
             </div>

@@ -7,7 +7,7 @@
         {% for s in channel_list %}
         <div class="sub-list-grid"> 
             <img class='user-pic' src="{{s.channel.Thumbnail.url}}" alt="user profile picture">
-            <span class='user-name'>{{s.channel.Name}}</span>
+            <a href="{% url 'channels' s.channel.id %}"> <span class='user-name'>{{s.channel.Name}}</span> </a>
             <br>
             <span class='num-subscribers'>{{s.subscription}} Subscriber</span>
             

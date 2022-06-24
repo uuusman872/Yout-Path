@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.index, name="home"),
     path('videos', views.videos, name="videos"),
-    path("channels", views.channels, name="channels"),
+    path("channels_ajx", views.channels_ajx, name="channels_ajx"),
     path('videoplayer/<int:pk_id>', views.videoplayer, name="videoplayer"),
     path('video-like/<int:vid>', views.LikeVideo, name="video-like"),
     path('video-dislike/<int:vid>', views.DislikeVideo, name="video-dislike"),
@@ -26,7 +26,8 @@ urlpatterns = [
     path("unsubscribe-channel", views.unsubscribeChannel, name="unsubscribe-channel"),
     path("register_selection", views.register_selection, name="register_selection"),
     path("logout", views.logout_view, name="logout"),
-    path("channels/<int:channel_id>", views.channels, name="channels")
+    path("channels/<int:channel_id>", views.channels, name="channels"),
+ 
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

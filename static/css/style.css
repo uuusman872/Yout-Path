@@ -314,6 +314,7 @@ h1 {
     min-height: 138px;
 
 }
+
 .user-pic-profile{
   height: 80px !important;
     width: 80px !important;
@@ -412,3 +413,6 @@ h5{
   align-items: center;
   flex-direction: column;
 }
+
+
+

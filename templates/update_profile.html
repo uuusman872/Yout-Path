@@ -24,11 +24,11 @@
 
         <div class="inputs">
             <label> First Name </label>
-            <input required type="text" placeholder="{{ userModel.user.first_name }}" name="first_name" autofocus />
+            <input required type="text" placeholder="{{ userModel.user.first_name }}" name="first_name" value="{{ userModel.user.first_name }}" autofocus />
             <label> Last Name </label>
-            <input required type="text" placeholder="{{ userModel.user.last_name }}" name="last_name"/>
+            <input required type="text" placeholder="{{ userModel.user.last_name }}" name="last_name" value="{{ userModel.user.last_name }}"/>
             <label> Phone# </label>
-            <input required type="number" placeholder="{{ userModel.phoneNumber }}" name="phoneNumber" autofocus />
+            <input required type="number" placeholder="{{ userModel.phoneNumber }}" value="{{ userModel.phoneNumber }}" name="phoneNumber" autofocus />
             <label> Profile Image </label>
             <input required type="file" placeholder="Profile Image" name="profileImage"/>
 

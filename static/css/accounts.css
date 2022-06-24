@@ -95,6 +95,9 @@ input:-moz-placeholder {
     color: black;
 
 }
+.form-group p{
+    width: 330px !important;
+}
 
 .inputs-a{
     background: #f5f5f5;

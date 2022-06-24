@@ -32,7 +32,7 @@
                 <h3>
                     {{vid.Title}}
                 </h3>
-                <a href="">{{vid.channel.Name}}</a>
+                <a href="{% url 'channels' vid.channel.id %}">{{vid.channel.Name}}</a>
                 <span> {{ vid.views }} Views • {{vid.uploaded_date}} </span>
               </div>
             </div>

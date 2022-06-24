@@ -59,7 +59,7 @@ def videos(request):
     return render(request, "videos.html", context)
 
 
-def channels(request):
+def channels_ajx(request):
     user = UserModel.objects.get(user=request.user)
     channels = ChannelModel.objects.filter(User=user)
     channel_list = []
@@ -441,8 +441,11 @@ def logout_view(request):
 def channels(request, channel_id):
     channel = ChannelModel.objects.get(id=channel_id)
     videos = VideoModel.objects.filter(channel_id=channel.id)
+    
     context = {
         "channel": channel,
-        "videos": videos
+        "videos": videos,
+        
     }
     return render(request, "channel_view.html", context)
+
