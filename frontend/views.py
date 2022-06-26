@@ -165,7 +165,7 @@ def DislikeVideo(request, vid):
         liked.delete()
     return redirect('videoplayer', vid)
 
-
+@login_excluded('home')
 def login(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -189,7 +189,7 @@ def login(request):
         
     return render(request, "accounts/login.html")
 
-
+@login_excluded('home')
 def register(request):
     user_form = forms.UserForm(request.POST or None, request.FILES)
     user_role = request.GET.get('user-role')
@@ -387,11 +387,17 @@ def update_profile(request):
         user_obj.save()
         user.phoneNumber = request.POST['phoneNumber']
         profileImage = request.FILES['profileImage']
+        specialization = request.POST['specialization']
+
         if profileImage is not None:
             fs = FileSystemStorage()
             filename = fs.save(profileImage.name, profileImage)
             uploaded_file_url = fs.url(filename)
             user.profile_image.name = profileImage.name
+
+        if user.is_preacher:
+            user.specialization = specialization
+
         user.save()
         return redirect('home')
     userModel = UserModel.objects.get(user=request.user)

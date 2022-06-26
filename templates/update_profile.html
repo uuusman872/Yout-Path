@@ -11,14 +11,12 @@
         {% csrf_token %}
 
         <div class="header">
-
             <div>
                 <h3>Update Profile</h3>
                 
                 <p>Fill and boom</p>
             </div>
                 <a class="home-button" href="{% url 'home' %}">Home</a>
-                
             </div>
         <div class="sep"></div>
 
@@ -29,6 +27,10 @@
             <input required type="text" placeholder="{{ userModel.user.last_name }}" name="last_name" value="{{ userModel.user.last_name }}"/>
             <label> Phone# </label>
             <input required type="number" placeholder="{{ userModel.phoneNumber }}" value="{{ userModel.phoneNumber }}" name="phoneNumber" autofocus />
+            {%  if userModel.specialization %}
+                <label> User Specialization </label>
+                <input required type="text" placeholder="{{ userModel.specialization }}" name="specialization" value="{{ userModel.specialization }}" />
+            {% endif %}
             <label> Profile Image </label>
             <input required type="file" placeholder="Profile Image" name="profileImage"/>
 
