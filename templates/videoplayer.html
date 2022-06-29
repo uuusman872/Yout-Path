@@ -68,6 +68,15 @@
                     </div>
 
                     <p class='comment-description'>{{com.text}}</p>
+
+                    <form method="POST" action="{% url 'comment_delete' params com.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ params }}" name="params">
+                        <input type="submit" value="DELETE">
+                     </form>
+
+                    <a href="{% url 'update_comment' params com.id %}" > Edit </a>
+
                     <div class="like-and-dislike-section-comments">
                         <!-- <i class="material-icons">thumb_up</i>  <span> 1 </span>
                         <i class="material-icons">thumb_down</i> <span> 546 </span>

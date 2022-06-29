@@ -1,6 +1,7 @@
 from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from projectApi import forms
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -10,6 +11,17 @@ from django.db.models import Q
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth import logout
 from django.contrib import messages
+
+
+from django.views.generic import (
+    ListView,
+    CreateView,
+    UpdateView,
+    DetailView,
+    DeleteView,
+)
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
@@ -28,8 +40,13 @@ def index(request):
     videos = VideoModel.objects.all().order_by("-uploaded_date")
     context_list = []
     warnings = ""
+    video_from_Subs = []
     if request.user.is_authenticated and UserModel.objects.filter(user=request.user).exists():
         user = UserModel.objects.get(user=request.user)
+        subscriptions = Subscription.objects.filter(user=user)
+        for subs in subscriptions:
+            video_from_Subs.append(VideoModel.objects.filter(channel=subs.channel).order_by("-uploaded_date")[:6])
+            print("[+] ",video_from_Subs)
         if UserWarning.objects.filter(user=user).exists():
             warnings = UserWarning.objects.filter(user=user).order_by('-created_date')[0]
             print("[+] Warning is ", warnings.is_seen)
@@ -40,10 +57,12 @@ def index(request):
     else:
         warnings = ""
     for vid in videos:
+        print("[+] views is ",View.objects.filter(video=vid))
         views = View.objects.filter(video=vid).count()
         context_list.append({"object": vid, "views": views})
     context = {
         "context_list": context_list,
+        "video_from_Subs": video_from_Subs,
         "warnings": warnings
     }
     return render(request, "index.html", context=context)
@@ -132,7 +151,8 @@ def videoplayer(request, pk_id):
         "num_comments": num_comments,
         "comments": comments,
         "comment_form": form,
-        "is_subscribed": is_subscribed
+        "is_subscribed": is_subscribed,
+        "params": pk_id
     }
     return render(request, "videoplayer.html", context)
 
@@ -455,3 +475,24 @@ def channels(request, channel_id):
     }
     return render(request, "channel_view.html", context)
 
+
+
+class CommentDeleteView(DeleteView):
+    login_url = 'login'
+    model = CommentsModel
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse("videoplayer", kwargs={"pk_id": self.kwargs["param"]})
+
+
+class UpdateCommentMessageView(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+    model = CommentsModel
+    fields = ['text']
+    template_name = 'update_comment_message.html'
+
+    def get_success_url(self):
+        return reverse("videoplayer", kwargs={"pk_id": self.kwargs["param"]})

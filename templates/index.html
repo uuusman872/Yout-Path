@@ -13,8 +13,6 @@
       
       <div id="text" class="videos">
         <h1>Recommended</h1>
-        
-        
         <div class="videos__container">
           <!-- Single Video starts -->
           {% for objlist in context_list %}
@@ -42,9 +40,40 @@
     
         </div>
        
+        <h1>Subscribed</h1>
+        <div class="videos__container">
+          <!-- Single Video starts -->
+          {% for context_list in video_from_Subs %}
+          {% for objlist in context_list %}
+          <a href="{% url 'videoplayer' objlist.id %}">
+          <div class="video">
+            <div class="video__thumbnail">
+              <img src="{{objlist.videoThumbnail.url}}" alt=""/>
+            </div>
+            <div class="video__details">
+              <div class="author">
+                <img src="{{ objlist.channel.Thumbnail.url }}" alt="" />
+              </div>
+              <div class="title">
+                <h3>
+                  {{objlist.Title}}
+                </h3>
+                <a href="{% url 'channels' objlist.channel.id %}">{{objlist.channel.Name}}</a>
+                <span> {{ objlist.views }} Views • {{objlist.uploaded_date}} </span>
+              </div>
+            </div>
+          </div>
+          <!-- Single Video Ends -->
+        </a>
+          {% endfor %}
+          {% endfor %}
+        </div>
+       
   
       </div>
-    </div>
+  
+      </div>
+
  
     <!-- Main Body Ends -->
     

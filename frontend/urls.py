@@ -27,6 +27,8 @@ urlpatterns = [
     path("register_selection", views.register_selection, name="register_selection"),
     path("logout", views.logout_view, name="logout"),
     path("channels/<int:channel_id>", views.channels, name="channels"),
+    path('comment_delete/<int:param>/<int:pk>', views.CommentDeleteView.as_view() , name="comment_delete"),
+    path("update_comment/<int:param>/<int:pk>", views.UpdateCommentMessageView.as_view(), name="update_comment")
  
 ]
 if settings.DEBUG:
