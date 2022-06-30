@@ -87,12 +87,12 @@
 
                     <div class="edit-comment-flex"> 
                         <p class='comment-description edit-comment-flex-1'>{{com.text}}</p>
-                        <form class="edit-comment-flex-2" method="POST" action="{% url 'comment_delete' params com.id %}">
+                        <form title="Delete Comment" class="edit-comment-flex-2" method="POST" action="{% url 'comment_delete' params com.id %}">
                             {% csrf_token %}
                             <input type="hidden" value="{{ params }}" name="params">
                             <button class="edit-comment-button" type="submit"> <i class="material-icons ">delete</i></button>
                         </form>
-                        <a href="{% url 'update_comment' params com.id %}"  >  <i class="material-icons ">edit</i> </a>
+                        <a title="Edit Comment" href="{% url 'update_comment' params com.id %}"  >  <i class="material-icons ">edit</i> </a>
 
                     </div>
 
