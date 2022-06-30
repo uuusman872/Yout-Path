@@ -2,6 +2,24 @@
 {% load static %}
 {% block title %} Video {% endblock title %}
 {% block main %}
+
+
+
+<script>
+    function videos(){
+                $.ajax({
+        url: "update_comment",
+        type: 'GET',
+        success: function (data) {
+            
+            $('#load-vidoes').load( "update_comment");
+      
+        }
+        });
+    } 
+</script>
+
+
   
 <div class="mainBody-1">
     {% include 'includes/sidebar.html' %}
@@ -67,15 +85,16 @@
                         <span class="gray-color-1">{{com.commented_date}}</span>
                     </div>
 
-                    <p class='comment-description'>{{com.text}}</p>
+                    <div class="edit-comment-flex"> 
+                        <p class='comment-description edit-comment-flex-1'>{{com.text}}</p>
+                        <form class="edit-comment-flex-2" method="POST" action="{% url 'comment_delete' params com.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ params }}" name="params">
+                            <button class="edit-comment-button" type="submit"> <i class="material-icons ">delete</i></button>
+                        </form>
+                        <a href="{% url 'update_comment' params com.id %}"  >  <i class="material-icons ">edit</i> </a>
 
-                    <form method="POST" action="{% url 'comment_delete' params com.id %}">
-                        {% csrf_token %}
-                        <input type="hidden" value="{{ params }}" name="params">
-                        <input type="submit" value="DELETE">
-                     </form>
-
-                    <a href="{% url 'update_comment' params com.id %}" > Edit </a>
+                    </div>
 
                     <div class="like-and-dislike-section-comments">
                         <!-- <i class="material-icons">thumb_up</i>  <span> 1 </span>
@@ -121,7 +140,7 @@
     </div>
     <!-- <div> -->
 
-
+        <div id="load-vidoes" > </div>
 
 
 </div>

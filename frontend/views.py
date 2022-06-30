@@ -496,3 +496,4 @@ class UpdateCommentMessageView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse("videoplayer", kwargs={"pk_id": self.kwargs["param"]})
+

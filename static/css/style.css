@@ -414,5 +414,20 @@ h5{
   flex-direction: column;
 }
 
+.edit-comment-flex{
+  display: flex;
+  align-items: center;
+}
+.edit-comment-flex-1{
+  flex: 1;
+}
+.edit-comment-flex-2{
+  margin: 10;
+}
+.edit-comment-button{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
 

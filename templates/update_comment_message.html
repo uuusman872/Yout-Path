@@ -1,6 +1,43 @@
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form  }}
-    {{request.id}}
-    <button class="btn btn-success ml-2" type="submit">Edit Comment</button>
-</form>
+
+
+{% extends 'accounts/accounts_base.html' %}
+{% load static %}
+{% block title %} Edit Profile {% endblock title %}
+{% block main %}
+
+
+
+<div class="container">
+
+    <form id="signup" method="POST"  enctype="multipart/form-data" >
+        {% csrf_token %}
+
+        <div class="header">
+            <div>
+                <h3>Edit Comment</h3>
+                
+                <p>Fill and boom</p>
+            </div>
+                <a class="home-button" href="{% url 'home' %}">Home</a>
+            </div>
+        <div class="sep"></div>
+
+        <div class="inputs">
+        
+                {{ form  }}
+            <input type="submit" value=" Edit Comment">
+
+        
+        </div>
+
+    </form>
+
+</div>
+</div>
+​<script>
+    
+        document.querySelector("label").innerHTML = "Edit Comment";
+ 
+</script>
+
+{%endblock main%}

@@ -1,7 +1,8 @@
+from tokenize import Token, group
 from django.contrib import admin
 from .models import *
 # Register your models here.
-
+from django.contrib.auth.models import Group
 
 class UserModelInfo(admin.ModelAdmin):
     list_display = ("user", "full_name", "email", "phoneNumber", "user_type")
@@ -22,7 +23,7 @@ admin.site.register(Dislike)
 admin.site.register(Like)
 admin.site.register(View)
 admin.site.register(Subscription)
-
+admin.site.unregister(Group)
 
 class UserWarningsForAdmin(admin.ModelAdmin):
     exclude = ['is_seen']

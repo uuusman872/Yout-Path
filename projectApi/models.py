@@ -16,6 +16,10 @@ class UserModel(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+    class Meta:
+        verbose_name = 'User Information'
+        verbose_name_plural = 'User Information'
 
 CHANNEL_TYPE = [
     ('IE', 'Islamic Economical System'),
@@ -46,6 +50,10 @@ class ChannelModel(models.Model):
     def __str__(self):
         return str(self.Name)
 
+    class Meta:
+        verbose_name = 'Channels'
+        verbose_name_plural = 'Channels'
+
 
 class Subscription(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
@@ -62,6 +70,10 @@ class VideoCategoryModel(models.Model):
 
     def __str__(self) -> str:
         return str(self.type)
+
+    class Meta:
+        verbose_name = 'Video Category'
+        verbose_name_plural = 'Video Category'
 
 
 from django.core.exceptions import ValidationError
@@ -83,6 +95,11 @@ class VideoModel(models.Model):
 
     def __str__(self):
         return str(self.Title)
+
+    class Meta:
+        verbose_name = 'Videos'
+        verbose_name_plural = 'Videos'
+
 
 class View(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.DO_NOTHING)
@@ -118,3 +135,7 @@ class CommentsModel(models.Model):
 
     def __str__(self):
         return str(self.user.user) + " on Video " + str(self.video)
+
+    class Meta:
+        verbose_name = 'Comments'
+        verbose_name_plural = 'Comments'
